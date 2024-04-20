@@ -130,6 +130,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@astrojs/netlify@npm:^5.2.0":
+  version: 5.2.0
+  resolution: "@astrojs/netlify@npm:5.2.0"
+  dependencies:
+    "@astrojs/underscore-redirects": "npm:^0.3.3"
+    "@netlify/functions": "npm:^2.0.1"
+    esbuild: "npm:^0.19.5"
+  peerDependencies:
+    astro: ^4.2.0
+  checksum: 10c0/2218f2f673fcf66cf710967073109590ac0ec3b73a2d14b861809f005e31207d35067787417857acca9ec9b102d57ffc5dc816650d71f3b9fb65704cbdae4c4e
+  languageName: node
+  linkType: hard
+
 "@astrojs/prism@npm:^3.1.0":
   version: 3.1.0
   resolution: "@astrojs/prism@npm:3.1.0"
@@ -185,6 +198,13 @@ __metadata:
     is-wsl: "npm:^3.0.0"
     which-pm-runs: "npm:^1.1.0"
   checksum: 10c0/ed4df1f0763e2fed242805f67f1c50aec0021c31b971ce846355cc981dfce498517f0b24e84de0ec6c426e6f17a2b48f97a2f7b32efa015653646f4dd3c51649
+  languageName: node
+  linkType: hard
+
+"@astrojs/underscore-redirects@npm:^0.3.3":
+  version: 0.3.3
+  resolution: "@astrojs/underscore-redirects@npm:0.3.3"
+  checksum: 10c0/13cd6402c308533c020557bf0adeb10ca809a9846aebee3057fe1cb5626b494046803e338193baad5688f272ca5bf8cf63f71257a7e2c8d37bf2c15e8a036726
   languageName: node
   linkType: hard
 
@@ -2259,6 +2279,32 @@ __metadata:
   version: 3.2.0
   resolution: "@n1ru4l/push-pull-async-iterable-iterator@npm:3.2.0"
   checksum: 10c0/c1fbfa49f631a4b95899b0d6c13ab7310e849bbfbcbdb4fabbcc8faa2d9e36fffdd05740746814641220235cfaac7440ee54c313edd32b4c1af37887d0046175
+  languageName: node
+  linkType: hard
+
+"@netlify/functions@npm:^2.0.1":
+  version: 2.6.0
+  resolution: "@netlify/functions@npm:2.6.0"
+  dependencies:
+    "@netlify/serverless-functions-api": "npm:1.14.0"
+  checksum: 10c0/f4fb83326bb29321f551b70f40e3048cda7582f33aed12d934105e6c4eee93902a40b8301740ba09338c833dfb7195ed5589252db667b3d89928eaf19a328754
+  languageName: node
+  linkType: hard
+
+"@netlify/node-cookies@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "@netlify/node-cookies@npm:0.1.0"
+  checksum: 10c0/5d8034d1fd581930e8100af4e5710b79cb3bb0a0b743c716d0d8a1c347aad767fa75130323f1aaee78080a026a4cafd4eef7d11953de01098a661d765a497b16
+  languageName: node
+  linkType: hard
+
+"@netlify/serverless-functions-api@npm:1.14.0":
+  version: 1.14.0
+  resolution: "@netlify/serverless-functions-api@npm:1.14.0"
+  dependencies:
+    "@netlify/node-cookies": "npm:^0.1.0"
+    urlpattern-polyfill: "npm:8.0.2"
+  checksum: 10c0/b4dabb8f76a741198a41cc9d985d7eb876f5fcd1cd9d42d3c1d39eb1556360687ef32e44ca89734b642c46a1f97d86e42f876cfeb33906913235aa6ecb36ec33
   languageName: node
   linkType: hard
 
@@ -4878,6 +4924,44 @@ __metadata:
   languageName: node
   linkType: hard
 
+"Little Squatch Blog@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "Little Squatch Blog@workspace:."
+  dependencies:
+    "@astrojs/mdx": "npm:^2.3.0"
+    "@astrojs/netlify": "npm:^5.2.0"
+    "@astrojs/rss": "npm:4.0.5"
+    "@astrojs/sitemap": "npm:3.1.2"
+    "@astrojs/tailwind": "npm:5.1.0"
+    "@julian_cataldo/astro-lightbox": "npm:^0.10.11"
+    "@pagefind/default-ui": "npm:^1.0.4"
+    "@tailwindcss/typography": "npm:0.5.10"
+    "@tinacms/cli": "npm:^1.5.30"
+    "@typescript-eslint/parser": "npm:^6.16.0"
+    astro: "npm:4.6.0"
+    astro-font: "npm:^0.0.72"
+    clsx: "npm:2.0.0"
+    eslint: "npm:^8.56.0"
+    eslint-plugin-astro: "npm:^0.31.0"
+    eslint-plugin-jsx-a11y: "npm:^6.8.0"
+    husky: "npm:^8.0.3"
+    lint-staged: "npm:^15.2.0"
+    mdast-util-to-string: "npm:^4.0.0"
+    motion: "npm:^10.16.4"
+    pagefind: "npm:^1.0.3"
+    prettier: "npm:^3.0.3"
+    prettier-config-standard: "npm:^7.0.0"
+    prettier-plugin-astro: "npm:^0.12.0"
+    reading-time: "npm:^1.5.0"
+    sass: "npm:^1.75.0"
+    slugify: "npm:^1.6.6"
+    tailwind-merge: "npm:2.0.0"
+    tailwindcss: "npm:3.3.5"
+    tinacms: "npm:^1.5.21"
+    typescript: "npm:^5.2.2"
+  languageName: unknown
+  linkType: soft
+
 "abbrev@npm:^2.0.0":
   version: 2.0.0
   resolution: "abbrev@npm:2.0.0"
@@ -5613,43 +5697,6 @@ __metadata:
   checksum: 10c0/528a9c3d7d6b87af98c46f10a887654d027c28c503c7f7de87440e643f0056d7a2319a967762b8ec18150c64799d2825a277147a752a0570a7407c0b705b0d01
   languageName: node
   linkType: hard
-
-"blog-template@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "blog-template@workspace:."
-  dependencies:
-    "@astrojs/mdx": "npm:^2.3.0"
-    "@astrojs/rss": "npm:4.0.5"
-    "@astrojs/sitemap": "npm:3.1.2"
-    "@astrojs/tailwind": "npm:5.1.0"
-    "@julian_cataldo/astro-lightbox": "npm:^0.10.11"
-    "@pagefind/default-ui": "npm:^1.0.4"
-    "@tailwindcss/typography": "npm:0.5.10"
-    "@tinacms/cli": "npm:^1.5.30"
-    "@typescript-eslint/parser": "npm:^6.16.0"
-    astro: "npm:4.6.0"
-    astro-font: "npm:^0.0.72"
-    clsx: "npm:2.0.0"
-    eslint: "npm:^8.56.0"
-    eslint-plugin-astro: "npm:^0.31.0"
-    eslint-plugin-jsx-a11y: "npm:^6.8.0"
-    husky: "npm:^8.0.3"
-    lint-staged: "npm:^15.2.0"
-    mdast-util-to-string: "npm:^4.0.0"
-    motion: "npm:^10.16.4"
-    pagefind: "npm:^1.0.3"
-    prettier: "npm:^3.0.3"
-    prettier-config-standard: "npm:^7.0.0"
-    prettier-plugin-astro: "npm:^0.12.0"
-    reading-time: "npm:^1.5.0"
-    sass: "npm:^1.75.0"
-    slugify: "npm:^1.6.6"
-    tailwind-merge: "npm:2.0.0"
-    tailwindcss: "npm:3.3.5"
-    tinacms: "npm:^1.5.21"
-    typescript: "npm:^5.2.2"
-  languageName: unknown
-  linkType: soft
 
 "body-parser@npm:1.20.2, body-parser@npm:^1.19.0":
   version: 1.20.2
@@ -7158,7 +7205,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:^0.19.6":
+"esbuild@npm:^0.19.5, esbuild@npm:^0.19.6":
   version: 0.19.12
   resolution: "esbuild@npm:0.19.12"
   dependencies:
@@ -16050,6 +16097,13 @@ __metadata:
   version: 1.0.3
   resolution: "url-pattern@npm:1.0.3"
   checksum: 10c0/fbc21f1d09b4c47eeb1b0bd3947a53e67c7500f98e52ea8cf3a41bb4b3012945cbf6ad2d0b0701df2a4cae8d8ebf5675f9626aee9f2414180632aa64358829c5
+  languageName: node
+  linkType: hard
+
+"urlpattern-polyfill@npm:8.0.2":
+  version: 8.0.2
+  resolution: "urlpattern-polyfill@npm:8.0.2"
+  checksum: 10c0/5388bbe8459dbd8861ee7cb97904be915dd863a9789c2191c528056f16adad7836ec22762ed002fed44e8995d0f98bdfb75a606466b77233e70d0f61b969aaf9
   languageName: node
   linkType: hard
 
