@@ -1,0 +1,111 @@
+---
+import HeaderLink from '@/components/HeaderLink'
+import InstagramIcon from './icons/InstagramIcon.astro'
+import MenuIcon from './icons/MenuIcon.astro'
+import Search from '@/components/Search'
+import TagIcon from './icons/TagIcon.astro'
+import GalleryIcon from './icons/GalleryIcon.astro'
+import ToggleTheme from './ToggleTheme.astro'
+import Logo from './icons/Logo.astro'
+import ContactIcon from './icons/MessageIcon.astro'
+import InfoIcon from './icons/Info-Circle.astro'
+
+// Menu icons for pages and social media
+const ICONS = [
+	{
+		name: 'Instagram',
+		url: '#',
+		icon: InstagramIcon
+	},
+]
+---
+
+<header class='relative flex items-center h-max font-semibold'>
+	<div 
+		id='header-logo'
+		class='text-lg mr-auto flex items-center gap-1'
+	>
+		<a 
+			href='/'
+		>
+				<div>
+					<Logo class='mx-auto'></Logo>
+				</div>
+				<span class='text-teal-600 dark:text-teal-300 text-2xl font-bold'>Little Squatch Shots</span>
+		</a>
+	</div>
+
+	<div
+		id='astro-header-drawer'
+		class='shadow rounded-l-lg md:bg-transparent dark:md:bg-transparent bg-white dark:bg-rose-950 md:shadow-none md:rounded-none md:border-none md:h-auto md:static absolute transition-transform duration-300 ease-in translate-x-96 md:translate-x-0 top-12 -right-5 pl-4 pt-6 pb-4 md:p-0 h-[300px] w-[200px] z-50'
+	>
+		<nav
+			class='flex h-full flex-col justify-around gap-2 sm:gap-12 text-left md:flex-row md:w-full md:gap-5'
+		>
+			<div
+			class='flex flex-col gap-4 md:flex-row md:border-r-2 border-black pr-4 dark:border-white'
+			>
+				<HeaderLink href='/gallery' class='flex items-center gap-1 text-l sm:text-xl md:text-base'>
+					<GalleryIcon /> Gallery
+				</HeaderLink>
+			</div>
+			<div
+			class='flex flex-col gap-4 md:flex-row md:border-r-2 border-black pr-4 dark:border-white'
+			>
+				<HeaderLink href='/tags' class='flex items-center gap-1 text-l sm:text-xl md:text-base'>
+					<TagIcon /> Tags
+				</HeaderLink>
+			</div>
+			<div
+				class='flex flex-col gap-4 md:flex-row md:border-r-2 border-black pr-4 dark:border-white'
+			>
+				<HeaderLink href='/about-little-squatch' class='flex items-center gap-1 text-l sm:text-xl sm:w-max md:text-base'>
+					<InfoIcon /> About
+				</HeaderLink>
+			</div>			
+			<div
+				class='flex flex-col gap-4 md:flex-row md:border-r-2 border-black pr-4 dark:border-white'
+			>
+				<HeaderLink href='/contact' class='flex items-center gap-1 text-l sm:text-xl sm:w-max md:text-base'>
+					<ContactIcon /> Contact
+				</HeaderLink>
+			</div>
+
+			<div class='flex justify-center items-center md:justify-end gap-3 md:p-0'>
+				{
+					ICONS.map((network) => (
+						<HeaderLink class='' href={network.url} target='_blank' aria-label={network.name}>
+							<span>{<network.icon />} </span>
+						</HeaderLink>
+					))
+				}
+			</div>
+		</nav>
+	</div>
+
+	<div class='flex items-center gap-3 md:pl-[170px]' transition:persist='navbar'>
+		<div>
+			<Search />
+		</div>
+		<ToggleTheme />
+		<button id='astro-header-drawer-button' type='button' class='text-teal-600 dark:text-teal-300 md:ml-6 md:hidden'>
+			<MenuIcon />
+			<span class='sr-only'>Show Menu</span>
+		</button>
+	</div>
+</header>
+<script>
+	document.addEventListener('click', (event) => {
+		const menu = document.getElementById('astro-header-drawer')
+		const menuButton = document.getElementById('astro-header-drawer-button')
+		const isClickInside =
+			menu?.contains(event.target as HTMLDivElement) ||
+			menuButton?.contains(event.target as HTMLButtonElement)
+
+		if (isClickInside) {
+			menu?.classList.toggle('translate-x-96')
+		} else {
+			menu?.classList.add('translate-x-96')
+		}
+	})
+</script>
