@@ -1,10 +1,10 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout'
 import Lightbox from '@julian_cataldo/astro-lightbox/Lightbox.astro'
-import ArrowLeft from './src/components/icons/ArrowLeft.astro'
+import ArrowLeft from '/src/components/icons/ArrowLeft.astro'
 import { Image } from 'astro:assets'
 import { getCollection } from 'astro:content'
-import { getAlbumImages } from './src/utils/albums.ts'
+import { getAlbumImages } from '/src/utils/albums.ts'
 
 export async function getStaticPaths() {
   const albums = await getCollection("albums");
