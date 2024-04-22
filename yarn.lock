@@ -6811,9 +6811,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.4.668":
-  version: 1.4.745
-  resolution: "electron-to-chromium@npm:1.4.745"
-  checksum: 10c0/2dd1842e0ee84f88e78ee6e81dbd9dd554a589cf612ab2e5920d8be837aaea78b4c00cf189e545ee25d36777514fed80c11c9a867b2194f94f173d063873ec18
+  version: 1.4.746
+  resolution: "electron-to-chromium@npm:1.4.746"
+  checksum: 10c0/1ff47105510e9a6dbc542d7165b88e030c8f2c815b30683ca05d8bc1a24e8f03e57caa0dc03959b08860b0465f9645edea5c682400da5b79b71ce9ddbb89a3d6
   languageName: node
   linkType: hard
 
@@ -8722,12 +8722,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"husky@npm:^8.0.3":
-  version: 8.0.3
-  resolution: "husky@npm:8.0.3"
+"husky@npm:^9.0.11":
+  version: 9.0.11
+  resolution: "husky@npm:9.0.11"
   bin:
-    husky: lib/bin.js
-  checksum: 10c0/6722591771c657b91a1abb082e07f6547eca79144d678e586828ae806499d90dce2a6aee08b66183fd8b085f19d20e0990a2ad396961746b4c8bd5bdb619d668
+    husky: bin.mjs
+  checksum: 10c0/2c787dcf74a837fc9a4fea7da907509d4bd9a289f4ea10ecc9d86279e4d4542b0f5f6443a619bccae19e265f2677172cc2b86aae5c932a35a330cc227d914605
   languageName: node
   linkType: hard
 
@@ -9942,7 +9942,7 @@ __metadata:
     eslint: "npm:^8.56.0"
     eslint-plugin-astro: "npm:^0.31.0"
     eslint-plugin-jsx-a11y: "npm:^6.8.0"
-    husky: "npm:^8.0.3"
+    husky: "npm:^9.0.11"
     lint-staged: "npm:^15.2.0"
     mdast-util-to-string: "npm:^4.0.0"
     motion: "npm:^10.16.4"
@@ -9955,7 +9955,7 @@ __metadata:
     slugify: "npm:^1.6.6"
     tailwind-merge: "npm:2.0.0"
     tailwindcss: "npm:3.3.5"
-    tinacms: "npm:^1.5.21"
+    tinacms: "npm:^1.6.1"
     typescript: "npm:^5.2.2"
   languageName: unknown
   linkType: soft
@@ -15303,7 +15303,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tinacms@npm:1.6.1, tinacms@npm:^1.5.21":
+"tinacms@npm:1.6.1, tinacms@npm:^1.6.1":
   version: 1.6.1
   resolution: "tinacms@npm:1.6.1"
   dependencies:
