@@ -29,5 +29,11 @@ export default defineConfig({
 		}),
 		sitemap(),
 		tailwind()
-	]
+	],
+	vite: {
+		ssr: {
+		  // Example: Force a broken package to skip SSR processing, if needed
+		  external: ['astro-lightbox'],
+		}
+	  }
 })
