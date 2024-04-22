@@ -5621,43 +5621,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"blog-template@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "blog-template@workspace:."
-  dependencies:
-    "@astrojs/mdx": "npm:^2.3.0"
-    "@astrojs/rss": "npm:4.0.5"
-    "@astrojs/sitemap": "npm:3.1.2"
-    "@astrojs/tailwind": "npm:5.1.0"
-    "@julian_cataldo/astro-lightbox": "npm:^0.10.11"
-    "@pagefind/default-ui": "npm:^1.0.4"
-    "@tailwindcss/typography": "npm:0.5.10"
-    "@tinacms/cli": "npm:^1.5.30"
-    "@typescript-eslint/parser": "npm:^6.16.0"
-    astro: "npm:4.6.0"
-    astro-font: "npm:^0.0.72"
-    clsx: "npm:2.0.0"
-    eslint: "npm:^8.56.0"
-    eslint-plugin-astro: "npm:^0.31.0"
-    eslint-plugin-jsx-a11y: "npm:^6.8.0"
-    husky: "npm:^8.0.3"
-    lint-staged: "npm:^15.2.0"
-    mdast-util-to-string: "npm:^4.0.0"
-    motion: "npm:^10.16.4"
-    pagefind: "npm:^1.0.3"
-    prettier: "npm:^3.0.3"
-    prettier-config-standard: "npm:^7.0.0"
-    prettier-plugin-astro: "npm:^0.12.0"
-    reading-time: "npm:^1.5.0"
-    sass: "npm:^1.75.0"
-    slugify: "npm:^1.6.6"
-    tailwind-merge: "npm:2.0.0"
-    tailwindcss: "npm:3.3.5"
-    tinacms: "npm:^1.5.21"
-    typescript: "npm:^5.2.2"
-  languageName: unknown
-  linkType: soft
-
 "body-parser@npm:1.20.2, body-parser@npm:^1.19.0":
   version: 1.20.2
   resolution: "body-parser@npm:1.20.2"
@@ -9959,6 +9922,43 @@ __metadata:
   checksum: 10c0/b565d6ceb3a4c2dbe0c1735c0fd907afd0d6f89de21aced8e05187b2d88ca2f8f9ebc5d743885396a00f05f13146f6be744d098a56ce0402cf1cd131485a7ff1
   languageName: node
   linkType: hard
+
+"littlesquatchblog@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "littlesquatchblog@workspace:."
+  dependencies:
+    "@astrojs/mdx": "npm:^2.3.0"
+    "@astrojs/rss": "npm:4.0.5"
+    "@astrojs/sitemap": "npm:3.1.2"
+    "@astrojs/tailwind": "npm:5.1.0"
+    "@julian_cataldo/astro-lightbox": "npm:^0.10.11"
+    "@pagefind/default-ui": "npm:^1.0.4"
+    "@tailwindcss/typography": "npm:0.5.10"
+    "@tinacms/cli": "npm:^1.5.30"
+    "@typescript-eslint/parser": "npm:^6.16.0"
+    astro: "npm:4.6.0"
+    astro-font: "npm:^0.0.72"
+    clsx: "npm:2.0.0"
+    eslint: "npm:^8.56.0"
+    eslint-plugin-astro: "npm:^0.31.0"
+    eslint-plugin-jsx-a11y: "npm:^6.8.0"
+    husky: "npm:^8.0.3"
+    lint-staged: "npm:^15.2.0"
+    mdast-util-to-string: "npm:^4.0.0"
+    motion: "npm:^10.16.4"
+    pagefind: "npm:^1.0.3"
+    prettier: "npm:^3.0.3"
+    prettier-config-standard: "npm:^7.0.0"
+    prettier-plugin-astro: "npm:^0.12.0"
+    reading-time: "npm:^1.5.0"
+    sass: "npm:^1.75.0"
+    slugify: "npm:^1.6.6"
+    tailwind-merge: "npm:2.0.0"
+    tailwindcss: "npm:3.3.5"
+    tinacms: "npm:^1.5.21"
+    typescript: "npm:^5.2.2"
+  languageName: unknown
+  linkType: soft
 
 "load-yaml-file@npm:^0.2.0":
   version: 0.2.0
