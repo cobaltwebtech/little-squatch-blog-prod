@@ -4,5 +4,6 @@ export const CATEGORIES = [
 	'Astrophotography',
 	'Landscape Photography',
 	'National and State Parks',
-	'Travel Stuff'
+	'Travel',
+	'Web Stuff'
 ] as const
