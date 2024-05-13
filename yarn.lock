@@ -5260,10 +5260,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"astro-font@npm:^0.0.72":
-  version: 0.0.72
-  resolution: "astro-font@npm:0.0.72"
-  checksum: 10c0/8987fab2d2b666ddfef02626671e1cc75cd1ab69575bc28f6468a7c7c5602c6e57e7af3556bea7c743bc3f54328fd0101e9de74190930a0594d3e0dab1da0dc3
+"astro-font@npm:^0.0.81":
+  version: 0.0.81
+  resolution: "astro-font@npm:0.0.81"
+  checksum: 10c0/2c8bc55823cdb17d040381ef3d32a9a3bc50240c2ce0df4b780a8c6d016d24702384ce9218214a668a2229f3cc7d7adde6b13b552df2662d5f771c396c4afb7d
   languageName: node
   linkType: hard
 
@@ -9937,7 +9937,7 @@ __metadata:
     "@tinacms/cli": "npm:^1.5.30"
     "@typescript-eslint/parser": "npm:^6.16.0"
     astro: "npm:4.6.0"
-    astro-font: "npm:^0.0.72"
+    astro-font: "npm:^0.0.81"
     clsx: "npm:2.0.0"
     eslint: "npm:^8.56.0"
     eslint-plugin-astro: "npm:^0.31.0"
