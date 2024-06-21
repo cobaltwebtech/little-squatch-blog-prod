@@ -10181,6 +10181,7 @@ __metadata:
     prettier-plugin-astro: "npm:^0.12.0"
     reading-time: "npm:^1.5.0"
     sass: "npm:^1.75.0"
+    sharp: "npm:^0.33.4"
     slugify: "npm:^1.6.6"
     tailwind-merge: "npm:2.0.0"
     tailwindcss: "npm:3.3.5"
@@ -14742,7 +14743,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sharp@npm:^0.33.3":
+"sharp@npm:^0.33.3, sharp@npm:^0.33.4":
   version: 0.33.4
   resolution: "sharp@npm:0.33.4"
   dependencies:
