@@ -9884,7 +9884,7 @@ __metadata:
     pagefind: "npm:^1.0.3"
     prettier: "npm:^3.0.3"
     prettier-config-standard: "npm:^7.0.0"
-    prettier-plugin-astro: "npm:^0.12.0"
+    prettier-plugin-astro: "npm:^0.14.0"
     reading-time: "npm:^1.5.0"
     sass: "npm:^1.75.0"
     slugify: "npm:^1.6.6"
@@ -12992,14 +12992,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier-plugin-astro@npm:^0.12.0":
-  version: 0.12.3
-  resolution: "prettier-plugin-astro@npm:0.12.3"
+"prettier-plugin-astro@npm:^0.14.0":
+  version: 0.14.0
+  resolution: "prettier-plugin-astro@npm:0.14.0"
   dependencies:
     "@astrojs/compiler": "npm:^1.5.5"
     prettier: "npm:^3.0.0"
     sass-formatter: "npm:^0.7.6"
-  checksum: 10c0/6b07f86855fe742aa3ba32f87d4bd49365f182ee8d28e94e0f1cbc524c7fa49cef48545d5cbaccd3502cd872f1e085b03b2bd3371b9ad98e5329624d330950ad
+  checksum: 10c0/7cbb3c7543bdcec5fae420e667073473e904ef02e4c48b6a8a15b08ccd2efa2f2cb49896f68bced3d599b60ddb3955f98a2cce03385fb9aa03e86185745dcdeb
   languageName: node
   linkType: hard
 
