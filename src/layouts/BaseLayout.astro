@@ -4,16 +4,18 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import ProviderTheme from '@/components/ProviderTheme'
 import ProviderAnimations from '@/components/ProviderAnimations'
+import LenisScroll from '@/components/LenisScroll'
 import TwSizeIndicator from '@/components/TwSizeIndicator'
 import EditBlog from '@/components/editBlog'
 const { title, description, image, articleDate } = Astro.props
 ---
 
-<html lang='en' class='scroll-smooth'>
+<html lang='en' class='scrollbar-hide lenis lenis-smooth'>
 	<head>
 		<BaseHead title={title} description={description} ogImage={image} articleDate={articleDate} />
 		<ProviderTheme />
 		<ProviderAnimations />
+		<LenisScroll />
 	</head>
 
 	<body class='bg-white text-slate-900 dark:text-slate-100 dark:bg-slate-900'>
