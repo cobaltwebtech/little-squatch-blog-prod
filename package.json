@@ -65,7 +65,7 @@
 		"sass": "^1.77.8",
 		"slugify": "^1.6.6",
 		"tailwind-merge": "^2.4.0",
-		"tailwindcss": "^3.4.7",
+		"tailwindcss": "^3.4.13",
 		"tinacms": "^2.1.0",
 		"typescript": "^5.5.4"
 	},
