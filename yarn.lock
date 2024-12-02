@@ -8305,9 +8305,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"framer-motion@npm:^11.11.17":
-  version: 11.11.17
-  resolution: "framer-motion@npm:11.11.17"
+"framer-motion@npm:^11.12.0":
+  version: 11.12.0
+  resolution: "framer-motion@npm:11.12.0"
   dependencies:
     tslib: "npm:^2.4.0"
   peerDependencies:
@@ -8321,7 +8321,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10c0/4ec88a568e636c5409a238668770a7d0237270b4b58fdf27d0cab1f9094a4fdd22d25d827a1bba51e52f01e9d2db65544b32a5feb8eff9a63c8798f2e64677d0
+  checksum: 10c0/9d1cfa356f5230b9bbed2107cbef50d38a7afa4c9d03fc7820c8d7bd8be697046af0e5b45f01d926c6b784f789858ad683afb361073271f826e63f29af4b05fb
   languageName: node
   linkType: hard
 
@@ -10261,7 +10261,7 @@ __metadata:
     lenis: "npm:^1.1.17"
     lint-staged: "npm:^15.2.10"
     mdast-util-to-string: "npm:^4.0.0"
-    motion: "npm:^11.11.17"
+    motion: "npm:^11.12.0"
     pagefind: "npm:^1.2.0"
     prettier: "npm:^3.3.3"
     prettier-config-standard: "npm:^7.0.0"
@@ -12446,11 +12446,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"motion@npm:^11.11.17":
-  version: 11.11.17
-  resolution: "motion@npm:11.11.17"
+"motion@npm:^11.12.0":
+  version: 11.12.0
+  resolution: "motion@npm:11.12.0"
   dependencies:
-    framer-motion: "npm:^11.11.17"
+    framer-motion: "npm:^11.12.0"
     tslib: "npm:^2.4.0"
   peerDependencies:
     "@emotion/is-prop-valid": "*"
@@ -12463,7 +12463,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10c0/4649b8746fbafb2869e2bb256e37658fe811d13cbbc8c0644964fdbcf257f4eb06cd1ad30e9084e0842a6c1720804caf69ac6110952423c842bc0d2f16c6b5b8
+  checksum: 10c0/434a9523e58788d4e1a7032533491b1a4452bdc5d056a0ae22718861bbe6d9bc67fadea9e15d55db4a897d2c06a463ec522f315d2e5c3efa924d4bc467b901a2
   languageName: node
   linkType: hard
 
@@ -16107,11 +16107,11 @@ __metadata:
 
 "typescript@patch:typescript@npm%3A^5.6.3#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.7.2#optional!builtin<compat/typescript>":
   version: 5.7.2
-  resolution: "typescript@patch:typescript@npm%3A5.7.2#optional!builtin<compat/typescript>::version=5.7.2&hash=5786d5"
+  resolution: "typescript@patch:typescript@npm%3A5.7.2#optional!builtin<compat/typescript>::version=5.7.2&hash=5adc0c"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10c0/f3b8082c9d1d1629a215245c9087df56cb784f9fb6f27b5d55577a20e68afe2a889c040aacff6d27e35be165ecf9dca66e694c42eb9a50b3b2c451b36b5675cb
+  checksum: 10c0/c891ccf04008bc1305ba34053db951f8a4584b4a1bf2f68fd972c4a354df3dc5e62c8bfed4f6ac2d12e5b3b1c49af312c83a651048f818cd5b4949d17baacd79
   languageName: node
   linkType: hard
 
