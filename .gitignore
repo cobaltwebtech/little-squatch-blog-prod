@@ -1,14 +1,13 @@
 # build output
 dist/
-# generated types
 .astro/
+.idea/
+.vercel/
 .yarn/
+.netlify/
 
 # dependencies
 node_modules/
-
-
-tina-lock.json
 
 # logs
 npm-debug.log*
@@ -16,6 +15,10 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+#generated types
+yarn.lock
+package-lock.json
+tina-lock.json
 
 # environment variables
 .env
@@ -23,5 +26,3 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
-
-node_modules
