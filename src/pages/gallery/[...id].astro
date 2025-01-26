@@ -1,10 +1,10 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout'
-import Lightbox from '@julian_cataldo/astro-lightbox/LightBox.astro'
 import ArrowLeft from 'src/components/icons/ArrowLeft.astro'
 import { Image } from 'astro:assets'
 import { getCollection } from 'astro:content'
 import { getAlbumImages } from 'src/utils/albums.ts'
+import 'photoswipe/style.css';
 
 export async function getStaticPaths() {
   const albums = await getCollection("albums");
@@ -38,24 +38,30 @@ const images = await getAlbumImages(album.id);
 
       <div
         class="mx-auto container my-8 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5 text-center"
+      data-pswp-gallery
       >
-        {
-          images.map((image) => (
-            <div data-lightbox="true">
-              <Image
-                src={image}
-                alt={`Image from ${album.data.title} album`}
-                format="avif"
-                quality={50}
-                class="rounded mb-4 border border-transparent hover:border-gray-300 transition-all duration-300 ease-in-out hover:shadow-lg"
-                loading="lazy"
-                data-album-image
-              />
-            </div>
-          ))
-        }
-      </div>
-
+      {
+        images.map((image) => (
+          <a
+            href={image.src}
+            data-pswp-width={image.width}
+            data-pswp-height={image.height}
+            class="contents"
+            target="_blank"
+          >
+            <Image
+              src={image}
+              alt={`Image from ${album.data.title} album`}
+              format="avif"
+              quality={50}
+              class="rounded mb-4 border border-transparent hover:border-gray-300 transition-all duration-300 ease-in-out hover:shadow-lg"
+              loading="lazy"
+            />
+          </a>
+        ))
+      }
+    </div>
+    
 			<div
 				class='flex flex-col md:flex-row'
 			>
@@ -65,5 +71,14 @@ const images = await getAlbumImages(album.id);
 			</div>			
     </section>
 </BaseLayout>
+<script>
+  import PhotoSwipeLightbox from 'photoswipe/lightbox';
 
-<Lightbox />
+  const lightbox = new PhotoSwipeLightbox({
+    gallery: '[data-pswp-gallery]',
+    children: 'a',
+    pswpModule: () => import('photoswipe')
+  });
+
+  lightbox.init();
+</script>
