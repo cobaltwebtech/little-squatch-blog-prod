@@ -3,7 +3,10 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
 	darkMode: 'class',
-	content: ['./src/**/*.{astro,html,js,md,mdx,ts}'],
+	content: [
+		'./src/**/*.{astro,html,js,md,mdx,ts}',
+		'./node_modules/preline/preline.js',
+	],
 	theme: {
 		extend: {
 			colors: {
@@ -17,5 +20,8 @@ module.exports = {
 			}
 		}
 	},
-	plugins: [require('@tailwindcss/typography')]
+	plugins: [
+		require('@tailwindcss/typography'),
+		require('preline/plugin'),
+	]
 }

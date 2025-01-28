@@ -1,55 +1,23 @@
 ---
-import SunIcon from '@/components/icons/SunIcon'
-import MoonIcon from '@/components/icons/MoonIcon'
+import { Icon } from 'astro-icon/components';
 ---
+<!-- Dark Theme Toggle Button --><!-- This button is shown when the light theme is active, and when clicked, it switches the theme to dark -->
+<button
+  type="button"
+  aria-label="Dark Theme Toggle"
+  class="hs-dark-mode group flex size-8 items-center justify-center rounded-full font-medium text-indigo-800 dark:text-white hover:text-white outline-none ring-zinc-500 transition duration-300 hover:bg-indigo-800 hs-dark-mode-active:hidden dark:ring-zinc-200 dark:focus:outline-none"
+  data-hs-theme-click-value="dark"
+>
+  <Icon name="solar:moon-stars-bold-duotone" class="size-6"/>
 
-<script>
-	class themeToggle extends HTMLElement {
-		constructor() {
-			super()
-			const button = this.querySelector('button') as HTMLButtonElement
-
-			if (button) {
-				button.addEventListener('click', (e) => {
-					if (e.currentTarget instanceof HTMLButtonElement) {
-						let isPressed = e.currentTarget.getAttribute('aria-pressed') === 'true'
-						let themeChangeEvent = new CustomEvent('theme-change', {
-							detail: {
-								theme: isPressed ? 'light' : 'dark'
-							}
-						})
-						// dispatch event -> ThemeProvider.astro
-						document.dispatchEvent(themeChangeEvent)
-						button.setAttribute('aria-pressed', String(!isPressed))
-					}
-				})
-			}
-		}
-	}
-
-	if ('customElements' in window) {
-		customElements.define('theme-toggle', themeToggle)
-	}
-</script>
-
-<theme-toggle class='relative h-6 w-6'>
-	<button id='toggle-theme' class='group text-indigo-800 hover:text-orange-600 dark:text-teal-300 dark:hover:text-teal-500'>
-		<span class='absolute left-0 right-0 top-0 opacity-0 group-aria-pressed:opacity-100'>
-			<SunIcon />
-		</span>
-
-		<span class='absolute left-0 right-0 top-0 opacity-0 group-aria-[pressed=false]:opacity-100'>
-			<MoonIcon />
-		</span>
-	</button>
-</theme-toggle>
-
-<script is:inline>
-	const button = document.getElementById('toggle-theme')
-
-	function setButtonPresssed() {
-		const bodyThemeIsDark = document.documentElement.classList.contains('dark')
-		button.setAttribute('aria-pressed', String(bodyThemeIsDark))
-	}
-	setButtonPresssed()
-</script>
+  <!-- Light Theme Toggle Button -->
+  <!-- This button is hidden by default and only appears when the dark theme is active, when clicked, it switches to the light theme -->
+</button>
+<button
+  type="button"
+  aria-label="Light Theme Toggle"
+  class="hs-dark-mode group hidden size-8 items-center justify-center rounded-full font-medium dark:text-white outline-none ring-zinc-500 transition duration-300 hs-dark-mode-active:flex dark:ring-zinc-200 dark:hover:bg-orange-400 dark:focus:outline-none"
+  data-hs-theme-click-value="light"
+>
+  <Icon name="solar:sun-2-bold-duotone" class="size-6"/>
+</button>

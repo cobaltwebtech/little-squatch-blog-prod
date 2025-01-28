@@ -1,111 +1,190 @@
 ---
-import HeaderLink from '@/components/HeaderLink'
-import InstagramIcon from './icons/InstagramIcon.astro'
-import MenuIcon from './icons/MenuIcon.astro'
-import Search from '@/components/Search'
-import TagIcon from './icons/TagIcon.astro'
-import GalleryIcon from './icons/GalleryIcon.astro'
-import ToggleTheme from './ToggleTheme.astro'
-import Logo from './icons/Logo.astro'
-import ContactIcon from './icons/MessageIcon.astro'
-import InfoIcon from './icons/Info-Circle.astro'
+import ToggleTheme from './ToggleTheme.astro';
+import Logo from './icons/Logo.astro';
+import { Icon } from 'astro-icon/components';
+import type { NavItem } from '../utils/types';
 
-// Menu icons for pages and social media
-const ICONS = [
-	{
-		name: 'Instagram',
-		url: '#',
-		icon: InstagramIcon
-	},
-]
+//Array for menu items with Astro Icons
+const navItems: Array<NavItem> = [
+	{ title: "Gallery", url: "/gallery", iconName: "solar:gallery-bold-duotone" },
+	{ title: "Tags", url: "/tags", iconName: "solar:tag-bold-duotone" },
+	{ title: "About", url: "/about-little-squatch", iconName: "solar:info-square-bold-duotone" },
+	{ title: "Contact", url: "/contact", iconName: "solar:chat-line-bold-duotone" },
+];
 ---
-
-<header class='relative flex items-center h-max font-semibold'>
-	<div 
-		id='header-logo'
-		class='text-lg mr-auto flex items-center gap-1'
-	>
-		<a 
-			href='/'
-		>
-				<div>
-					<Logo class='mx-auto'></Logo>
-				</div>
-				<span class='text-teal-600 dark:text-teal-300 text-2xl font-bold'>Little Squatch Shots</span>
-		</a>
-	</div>
-
-	<div
-		id='astro-header-drawer'
-		class='shadow rounded-l-lg md:bg-transparent dark:md:bg-transparent bg-white dark:bg-rose-950 md:shadow-none md:rounded-none md:border-none md:h-auto md:static absolute transition-transform duration-300 ease-in translate-x-96 md:translate-x-0 top-12 -right-5 pl-4 pt-6 pb-4 md:p-0 h-[300px] w-[200px] z-50'
-	>
-		<nav
-			class='flex h-full flex-col justify-around gap-2 sm:gap-12 text-left md:flex-row md:w-full md:gap-5'
-		>
-			<div
-			class='flex flex-col gap-4 md:flex-row md:border-r-2 border-black pr-4 dark:border-white'
-			>
-				<HeaderLink href='/gallery' class='flex items-center gap-1 text-l sm:text-xl md:text-base'>
-					<GalleryIcon /> Gallery
-				</HeaderLink>
-			</div>
-			<div
-			class='flex flex-col gap-4 md:flex-row md:border-r-2 border-black pr-4 dark:border-white'
-			>
-				<HeaderLink href='/tags' class='flex items-center gap-1 text-l sm:text-xl md:text-base'>
-					<TagIcon /> Tags
-				</HeaderLink>
-			</div>
-			<div
-				class='flex flex-col gap-4 md:flex-row md:border-r-2 border-black pr-4 dark:border-white'
-			>
-				<HeaderLink href='/about-little-squatch' class='flex items-center gap-1 text-l sm:text-xl sm:w-max md:text-base'>
-					<InfoIcon /> About
-				</HeaderLink>
-			</div>			
-			<div
-				class='flex flex-col gap-4 md:flex-row md:border-r-2 border-black pr-4 dark:border-white'
-			>
-				<HeaderLink href='/contact' class='flex items-center gap-1 text-l sm:text-xl sm:w-max md:text-base'>
-					<ContactIcon /> Contact
-				</HeaderLink>
-			</div>
-
-			<div class='flex justify-center items-center md:justify-end gap-3 md:p-0'>
-				{
-					ICONS.map((network) => (
-						<HeaderLink class='' href={network.url} target='_blank' aria-label={network.name}>
-							<span>{<network.icon />} </span>
-						</HeaderLink>
-					))
-				}
-			</div>
-		</nav>
-	</div>
-
-	<div class='flex items-center gap-3 md:pl-[170px]' transition:persist='navbar'>
-		<div>
-			<Search />
-		</div>
-		<ToggleTheme />
-		<button id='astro-header-drawer-button' type='button' class='text-teal-600 dark:text-teal-300 md:ml-6 md:hidden'>
-			<MenuIcon />
-			<span class='sr-only'>Show Menu</span>
-		</button>
-	</div>
+<!-- Preline scripts are imported in the BaseLayout.astro component -->
+<!-- Main header component -->
+<header
+  class="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 sticky inset-x-0 top-4 z-50 flex flex-wrap text-sm md:flex-nowrap md:justify-start"
+>
+  <!-- Navigation container -->
+  <nav
+    class="relative mx-2 w-full rounded-3xl sm:rounded-[36px] border border-indigo-400 bg-indigo-100 dark:bg-indigo-900 p-2 sm:px-4 sm:py-3 backdrop-blur-md dark:border-indigo-600 dark:backdrop-blur-md md:flex md:items-center md:justify-between md:px-6 md:py-0 lg:px-8 xl:mx-auto"
+    aria-label="Navigation"
+  >
+    <div class="flex items-center justify-between gap-4">
+      <!-- Brand logo -->
+      <a
+        class="flex rounded-lg text-xl font-bold outline-none ring-slate-500 focus-visible:ring dark:ring-slate-200 dark:focus:outline-none"
+        href="/"
+        aria-label="Little Squatch Blog logo"
+      >
+        <div class='mx-auto w-[80px]'>
+            <Logo />
+        </div>
+        <div class="font-bold flex items-center mx-2 sm:w-28 xl:w-max text-lg lg:text-3xl text-indigo-800 dark:text-white lg:text-nowrap">Little Squatch Blog</div>
+      </a>
+      <!-- Collapse toggle for smaller screens -->
+      <div class="ml-auto md:hidden">
+        <button
+          type="button"
+          class="hs-collapse-toggle flex size-8 items-center justify-center rounded-full text-sm font-bold text-indigo-800 dark:text-white transition duration-300 hover:bg-slate-200 disabled:pointer-events-none disabled:opacity-50 dark:text-slate-100 dark:hover:bg-slate-700 dark:focus:outline-none"
+          data-hs-collapse="#navbar-collapse-with-animation"
+          aria-controls="navbar-collapse-with-animation"
+          aria-label="Toggle navigation"
+        >
+            <Icon name="solar:hamburger-menu-line-duotone" class="size-8 flex-shrink-0 hs-collapse-open:hidden" />
+            <Icon name="solar:close-circle-bold-duotone" class="hidden size-8 flex-shrink-0 hs-collapse-open:block" />
+        </button>
+      </div>
+      <!-- ThemeIcon component specifically for smaller screens -->
+      <span class="inline-block md:hidden">
+        <ToggleTheme />
+      </span>
+    </div>
+    <!-- Contains navigation links -->
+    <div
+      id="navbar-collapse-with-animation"
+      class="hs-collapse hidden grow basis-full overflow-hidden transition-all duration-300 md:block"
+    >
+      <!-- Navigation links container -->
+      <div
+        class="m-5 sm:mr-0 flex flex-col gap-x-0 gap-y-4 md:flex-row md:items-center md:justify-end md:gap-x-4 lg:gap-x-7 md:gap-y-0 md:ps-5"
+      >
+        <!-- Menu items -->
+        <ul class="mx-auto md:mx-0 md:flex md:items-center md:gap-6">
+            {
+                navItems.map(({ title, url, iconName }) => (
+                <li>
+                    <a class="py-4 flex justify-start md:justify-center items-center text-nowrap text-md font-semibold" href={url}>
+                        <Icon name={iconName} class="size-8" />
+                        <span class="ml-2">{title}</span>
+                    </a>
+                </li>
+              ))
+            }
+        </ul>
+        <!-- ThemeIcon component specifically for larger screens -->
+        <span class="hidden md:inline-block">
+          <ToggleTheme />
+        </span>
+      </div>
+    </div>
+  </nav>
 </header>
-<script>
-	document.addEventListener('click', (event) => {
-		const menu = document.getElementById('astro-header-drawer')
-		const menuButton = document.getElementById('astro-header-drawer-button')
-		const isClickInside =
-			menu?.contains(event.target as HTMLDivElement) ||
-			menuButton?.contains(event.target as HTMLButtonElement)
-
-		if (isClickInside) {
-			menu?.classList.toggle('translate-x-96')
-		} else {
-			menu?.classList.add('translate-x-96')
-		}
-	})
+<!-- Theme Appearance script to manage light/dark modes -->
+<script is:inline>
+    const HSThemeAppearance = {
+      init() {
+        const defaultTheme = "default";
+        let theme = localStorage.getItem("hs_theme") || defaultTheme;
+  
+        if (document.querySelector("html").classList.contains("dark")) return;
+        this.setAppearance(theme);
+      },
+      _resetStylesOnLoad() {
+        const $resetStyles = document.createElement("style");
+        $resetStyles.innerText = `*{transition: unset !important;}`;
+        $resetStyles.setAttribute("data-hs-appearance-onload-styles", "");
+        document.head.appendChild($resetStyles);
+        return $resetStyles;
+      },
+      setAppearance(theme, saveInStore = true, dispatchEvent = true) {
+        const $resetStylesEl = this._resetStylesOnLoad();
+  
+        if (saveInStore) {
+          localStorage.setItem("hs_theme", theme);
+        }
+  
+        if (theme === "auto") {
+          theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "default";
+        }
+  
+        document.querySelector("html").classList.remove("dark");
+        document.querySelector("html").classList.remove("default");
+        document.querySelector("html").classList.remove("auto");
+  
+        document
+          .querySelector("html")
+          .classList.add(this.getOriginalAppearance());
+  
+        setTimeout(() => {
+          $resetStylesEl.remove();
+        });
+  
+        if (dispatchEvent) {
+          window.dispatchEvent(
+            new CustomEvent("on-hs-appearance-change", { detail: theme }),
+          );
+        }
+      },
+      getAppearance() {
+        let theme = this.getOriginalAppearance();
+        if (theme === "auto") {
+          theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "default";
+        }
+        return theme;
+      },
+      getOriginalAppearance() {
+        const defaultTheme = "default";
+        return localStorage.getItem("hs_theme") || defaultTheme;
+      },
+    };
+    HSThemeAppearance.init();
+  
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", () => {
+        if (HSThemeAppearance.getOriginalAppearance() === "auto") {
+          HSThemeAppearance.setAppearance("auto", false);
+        }
+      });
+  
+    window.addEventListener("load", () => {
+      const $clickableThemes = document.querySelectorAll(
+        "[data-hs-theme-click-value]",
+      );
+      const $switchableThemes = document.querySelectorAll(
+        "[data-hs-theme-switch]",
+      );
+  
+      $clickableThemes.forEach(($item) => {
+        $item.addEventListener("click", () =>
+          HSThemeAppearance.setAppearance(
+            $item.getAttribute("data-hs-theme-click-value"),
+            true,
+            $item,
+          ),
+        );
+      });
+  
+      $switchableThemes.forEach(($item) => {
+        $item.addEventListener("change", (e) => {
+          HSThemeAppearance.setAppearance(e.target.checked ? "dark" : "default");
+        });
+  
+        $item.checked = HSThemeAppearance.getAppearance() === "dark";
+      });
+  
+      window.addEventListener("on-hs-appearance-change", (e) => {
+        $switchableThemes.forEach(($item) => {
+          $item.checked = e.detail === "dark";
+        });
+      });
+    });
 </script>
+  

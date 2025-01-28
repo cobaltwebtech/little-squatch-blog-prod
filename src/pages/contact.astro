@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout'
 import TitlePage from '@/components/TitlePage'
-
+import { Icon } from 'astro-icon/components'
 ---
 
 <BaseLayout title='Contact Me'>
@@ -27,7 +27,10 @@ import TitlePage from '@/components/TitlePage'
                   <input class='w-full rounded-md border border-teal-500 bg-teal-50 dark:bg-teal-800 focus:bg-teal-100 dark:focus:bg-teal-700 my-6 py-3 px-6' id='email' type='email' name='email' required />
                   <label class='font-semibold' for='message'>Message or questions below</label>
                   <textarea class='w-full rounded-md border border-teal-500 bg-teal-50 dark:bg-teal-800 focus:bg-teal-100 dark:focus:bg-teal-700 my-6 py-3 px-6' id='message' wrap='soft' name='message' required></textarea>
-                  <button class='font-bold w-1/4 rounded-md border border-teal-500 bg-teal-50 dark:bg-teal-800 hover:bg-teal-500 dark:hover:bg-teal-900 my-6 py-3 px-6' type='submit'>SUBMIT</button>
+                  <button class='flex flex-row gap-4 font-bold w-max-content rounded-md border border-teal-500 bg-teal-50 dark:bg-teal-800 hover:bg-teal-500 dark:hover:bg-teal-900 my-6 py-3 px-6' type='submit'>
+                    <Icon name="solar:plain-3-bold" class="size-6" />
+                    <span>Submit Message</span>
+                  </button>
                 </form>
               </div>
             </div>

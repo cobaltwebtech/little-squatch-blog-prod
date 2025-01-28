@@ -37,7 +37,7 @@
 		@apply text-teal-300;
 	}
 	.dark a:hover {
-		@apply text-teal-500;
+		@apply text-orange-400;
 	}
 
 	/* Netlify honeypot form styles */
@@ -50,6 +50,12 @@
 		white-space: nowrap;
 		width: 1px;
 	  }
+}
+
+.blog-body h2,
+h3,
+h4 {
+	scroll-margin-top: 10rem;
 }
 
 .glass {
@@ -66,3 +72,7 @@
 .scrollbar-hide {
 	scrollbar-width: none;
 }
+
+.modal.is-open {
+	@apply block;
+}  
