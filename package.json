@@ -29,7 +29,7 @@
 		"clean": "rimraf dist .astro node_modules yarn.lock .yarn .netlify"
 	},
 	"dependencies": {
-		"@astrojs/mdx": "4.0.7",
+		"@astrojs/mdx": "4.0.8",
 		"@astrojs/rss": "4.0.11",
 		"@astrojs/tailwind": "5.1.5",
 		"@preline/collapse": "^2.6.0",
