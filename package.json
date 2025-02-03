@@ -31,7 +31,7 @@
 	"dependencies": {
 		"@astrojs/mdx": "4.0.7",
 		"@astrojs/rss": "4.0.11",
-		"@astrojs/tailwind": "5.1.5",
+		"@astrojs/tailwind": "6.0.0",
 		"@preline/collapse": "^2.6.0",
 		"@preline/overlay": "^2.6.0",
 		"astro": "5.1.9",
