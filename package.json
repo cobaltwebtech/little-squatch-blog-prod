@@ -34,7 +34,7 @@
 		"@astrojs/tailwind": "5.1.5",
 		"@preline/collapse": "^2.6.0",
 		"@preline/overlay": "^2.6.0",
-		"astro": "5.1.9",
+		"astro": "5.2.5",
 		"astro-font": "^0.1.81",
 		"lenis": "^1.1.20",
 		"micromodal": "^0.4.10",
