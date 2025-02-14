@@ -1,16 +1,23 @@
 ---
-import { sluglify } from '@/utils'
+import { sluglify } from "@/utils";
+import { Icon } from "astro-icon/components";
 
 export interface Props {
-	tag: string
+  tag: string;
 }
-const { tag } = Astro.props
+
+const { tag } = Astro.props;
 ---
 
-<a href={sluglify(`/tags/${tag.toLowerCase()}`)} aria-label={tag}>
-	<span
-		class='bg-indigo-600 font-semibold text-white dark:bg-indigo-900 dark:text-white shadow text-sm w-fit px-2 py-1 md:px-5 md:py-2 rounded-full'
-	>
-		{tag ?? 'Blog Tag'}
-	</span>
-</a>
+<button type="button" class="rounded-4xl bg-orange-700" aria-label={tag}>
+  <a
+    href={sluglify(`/tags/${tag.toLowerCase()}`)}
+    class="flex items-center justify-center px-4 py-2 transition-transform duration-150 ease-in-out hover:translate-x-1"
+  >
+    <Icon
+      name="solar:hashtag-bold-duotone"
+      class="size-4 text-white transition-transform duration-250 ease-in-out"
+    />
+    <span class="text-xs text-white">{tag ?? "Blog Tag"}</span>
+  </a>
+</button>

@@ -1,20 +1,19 @@
 ---
-import BaseLayout from '@/layouts/BaseLayout'
-import { Image } from "astro:assets"
-import { getCollection } from "astro:content"
+import BaseLayout from "@/layouts/BaseLayout";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import TitlePage from "@/components/TitlePage";
 
 const albums = await getCollection("albums");
 ---
 
 <BaseLayout title="Gallery">
-  <div class="text-center">
-    <h2 class="text-5xl font-bold">Photo Gallery</h2>
-    <p class="text-xl my-4">A collection of my photos</p>
-  </div>
-  <section class="mx-auto container grid grid-cols-2 gap-8">
+  <TitlePage title="Gallery" iconName="solar:gallery-bold-duotone" />
+  <p class="text-center text-lg">A collection of my photos</p>
+  <section class="container mx-auto grid grid-cols-2 gap-8">
     {
       albums.map((item) => (
-        <a href={`/gallery/${item.id}`} class="group transition-all mb-4 block">
+        <a href={`/gallery/${item.id}`} class="group mb-4 block transition-all">
           <Image
             src={item.data.cover}
             alt={item.data.title}
@@ -23,12 +22,14 @@ const albums = await getCollection("albums");
             quality="mid"
             class:list={[
               "rounded-lg transition-all",
-              "group-hover:shadow-lg group-hover:opacity-90",
+              "group-hover:opacity-90 group-hover:shadow-lg",
             ]}
           />
           <div class="mt-4 text-center">
             <strong class="font-normal">{item.data.title}</strong>
-            <p class="text-xs text-slate-900 dark:text-slate-100">{item.data.description}</p>
+            <p class="text-xs text-slate-900 dark:text-slate-100">
+              {item.data.description}
+            </p>
           </div>
         </a>
       ))

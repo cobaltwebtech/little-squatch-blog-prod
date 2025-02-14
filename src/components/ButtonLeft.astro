@@ -1,0 +1,27 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  buttonLink: string;
+  buttonText: string;
+  ariaLabel?: string;
+};
+
+const { buttonLink, buttonText, ariaLabel } = Astro.props;
+---
+<button
+  type="button"
+  class="group rounded-4xl bg-teal-800"
+  aria-label={ariaLabel}
+>
+  <a
+    href={buttonLink}
+    class="flex items-center justify-center gap-3 px-4 py-2 transition-transform duration-150 ease-in-out hover:-translate-x-1"
+  >
+    <Icon
+      name="solar:arrow-right-up-bold-duotone"
+      class="size-8 rotate-225 text-white"
+    />
+    <span class="font-semibold text-white">{buttonText}</span>
+  </a>
+</button>

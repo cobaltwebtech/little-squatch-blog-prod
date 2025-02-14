@@ -1,44 +1,52 @@
 ---
-import BaseHead from '@/components/BaseHead'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
-import ThemeMode from '@/components/ThemeMode'
-import ProviderAnimations from '@/components/ProviderAnimations'
-import LenisScroll from '@/components/LenisScroll'
-import TwSizeIndicator from '@/components/TwSizeIndicator'
-import EditBlog from '@/components/editBlog'
-const { title, description, image, articleDate } = Astro.props
+import BaseHead from "@/components/BaseHead";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import ThemeMode from "@/components/ThemeMode";
+import ProviderAnimations from "@/components/ProviderAnimations";
+import LenisScroll from "@/components/LenisScroll";
+import TwSizeIndicator from "@/components/TwSizeIndicator";
+import EditBlog from "@/components/editBlog";
+import BttButton from "@/components/BackToTopButton";
+import "../styles/global.css";
+
+const { title, description, image, articleDate } = Astro.props;
 ---
 
-<html lang='en' class='scrollbar-hide lenis lenis-smooth'>
-	<head>
-		<BaseHead title={title} description={description} ogImage={image} articleDate={articleDate} />
-		<ThemeMode />
-		<ProviderAnimations />
-		<LenisScroll />
-	</head>
+<html lang="en" class="scrollbar-hide lenis lenis-smooth">
+  <head>
+    <BaseHead
+      title={title}
+      description={description}
+      ogImage={image}
+      articleDate={articleDate}
+    />
+    <ThemeMode />
+    <ProviderAnimations />
+    <LenisScroll />
+  </head>
 
-	<body class='bg-white text-slate-900 dark:text-slate-100 dark:bg-slate-900'>
-		<Header />
-		<main
-			class='mt-20 px-4 sm:px-6 lg:px-8 sm:mx-auto sm:max-w-2xl antialiased md:max-w-7xl grid gap-12 overflow-hidden md:overflow-visible'
-		>
-			<slot />
-			<Footer />
-		</main>
-		<TwSizeIndicator />
-		<EditBlog />
-		<style>
-			body {
-				margin-left: calc(100vw - 100%); /* prevent layout shift */
-			}
-		</style>
-	</body>
+  <body class="bg-amber-50 text-black dark:bg-teal-950 dark:text-white">
+    <Header />
+    <main
+      class="mt-20 grid gap-8 overflow-hidden px-4 antialiased sm:mx-auto sm:max-w-2xl sm:px-6 md:max-w-7xl md:overflow-visible lg:px-8"
+    >
+      <slot />
+      <Footer />
+    </main>
+    <TwSizeIndicator />
+    <EditBlog />
+    <BttButton />
+    <style>
+      body {
+        margin-left: calc(100vw - 100%); /* prevent layout shift */
+      }
+    </style>
+    <!--Import the necessary Collapse and Overlay plugins-->
+    <script>
+      import "@preline/collapse/index.js";
+      import "@preline/overlay/index.js";
+    </script>
+  </body>
 </html>
-<!--Import the necessary Collapse and Overlay plugins-->
-<script>
-    import "@preline/collapse/index.js";
-    import "@preline/overlay/index.js";
-</script>
-  
 <!-- Built with Astro by Cobalt Web Technologies https://www.cobaltweb.tech -->

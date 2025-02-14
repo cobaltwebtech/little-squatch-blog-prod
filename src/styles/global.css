@@ -1,78 +1,96 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+/*@config "../../tailwind.config.mjs";*/
+@plugin "@tailwindcss/typography";
+@source "preline/dist"; /* <- not sure if it should point to the directory instead: "../preline/dist" */
+@plugin "preline/plugin"; /* Uses newish shorthand syntax from https://github.com/BALOTIAS/preline-tw-v4 */
+
+@theme {
+  --color-black: theme(colors.slate.900);
+  --color-white: theme(colors.slate.100);
+  --default-font-family: "Rockwell Nova", ui-serif, serif;
+}
+
+@variant dark (&:where(.dark, .dark *));
 
 @layer base {
-	/* body {
-		transition: background-color 0.5s ease;
-	} */
+  html.dark .shiki,
+  html.dark .shiki span {
+    color: var(--shiki-dark) !important;
+    font-style: var(--shiki-dark-font-style) !important;
+    font-weight: var(--shiki-dark-font-weight) !important;
+    text-decoration: var(--shiki-dark-text-decoration) !important;
+  }
 
-	.prose code {
-		@apply text-base;
-	}
+  a {
+    @apply text-orange-600;
+  }
+  a:hover {
+    @apply text-cyan-700;
+  }
+  .dark a {
+    @apply text-cyan-400;
+  }
+  .dark a:hover {
+    @apply text-orange-400;
+  }
+  a {
+    @apply transition-colors duration-200;
+  }
 
-	/* prose styles here */
-	.prose h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		@apply text-zinc-800 dark:text-zinc-100   !important;
-	}
+  /* Netlify honeypot form styles */
+  .netlify-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+}
 
-	html.dark .shiki,
-	html.dark .shiki span {
-	  color: var(--shiki-dark) !important;
-	  background-color: theme(colors.gray.900) !important;
-	}
+@layer utilities {
+  .prose a {
+    @apply text-orange-600;
+  }
+  .prose a:hover {
+    @apply text-cyan-700;
+  }
+  .dark .prose a {
+    @apply text-cyan-400;
+  }
+  .dark .prose a:hover {
+    @apply text-orange-400;
+  }
+  .prose a {
+    @apply transition-colors duration-200;
+  }
+  .prose code {
+    @apply text-base;
+  }
 
-	.light a {
-		@apply text-indigo-800;
-	}
-	.light a:hover {
-		@apply text-orange-600;
-	}
-	.dark a {
-		@apply text-teal-300;
-	}
-	.dark a:hover {
-		@apply text-orange-400;
-	}
-
-	/* Netlify honeypot form styles */
-	.netlify-hidden {
-		clip: rect(0 0 0 0);
-		clip-path: inset(50%);
-		height: 1px;
-		overflow: hidden;
-		position: absolute;
-		white-space: nowrap;
-		width: 1px;
-	  }
+  .grid-cols-list {
+    grid-template-columns: repeat(auto-fill, minmax(400px, max-content));
+  }
 }
 
 .blog-body h2,
 h3,
 h4 {
-	scroll-margin-top: 10rem;
+  scroll-margin-top: 10rem;
 }
 
 .glass {
-	background: rgba(57, 56, 56, 0.52);
-	backdrop-filter: blur(13px) saturate(150%);
-	-webkit-backdrop-filter: blur(13px) saturate(150%);
-	z-index: -1;
+  background: rgba(57, 56, 56, 0.52);
+  backdrop-filter: blur(13px) saturate(150%);
+  -webkit-backdrop-filter: blur(13px) saturate(150%);
+  z-index: -1;
 }
 
 .shadow {
-	box-shadow: -5px 3px 8px 1px rgba(0, 0, 0, 0.12);
+  box-shadow: -5px 3px 8px 1px rgba(0, 0, 0, 0.12);
 }
 
 .scrollbar-hide {
-	scrollbar-width: none;
+  scrollbar-width: none;
 }
-
-.modal.is-open {
-	@apply block;
-}  

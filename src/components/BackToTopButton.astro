@@ -1,0 +1,35 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<button
+  id="back-to-top"
+  class="invisible fixed right-5 bottom-5 cursor-pointer rounded-full bg-teal-800 p-2 text-white opacity-0 shadow-lg transition-opacity duration-300 dark:bg-cyan-500"
+  aria-label="Back to top"
+>
+  <Icon name="solar:round-arrow-up-bold-duotone" class="size-8" />
+</button>
+
+<script>
+  const backToTopButton = document.getElementById("back-to-top");
+
+  function toggleBackToTopButton() {
+    if (window.scrollY > 200) {
+      backToTopButton.classList.remove("opacity-0", "invisible");
+      backToTopButton.classList.add("opacity-100", "visible");
+    } else {
+      backToTopButton.classList.add("opacity-0", "invisible");
+      backToTopButton.classList.remove("opacity-100", "visible");
+    }
+  }
+
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+
+  window.addEventListener("scroll", toggleBackToTopButton);
+  backToTopButton.addEventListener("click", scrollToTop);
+</script>

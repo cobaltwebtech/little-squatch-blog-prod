@@ -1,0 +1,68 @@
+---
+import BaseLayout from "@/layouts/BaseLayout";
+import { getCollection } from "astro:content";
+import ListPostsSimple from "@/components/ListPostsSimple";
+import TitlePage from "@/components/TitlePage";
+import { groupPostsByYear } from "@/utils";
+import { Icon } from "astro-icon/components";
+import ButtonLeft from "@/components/ButtonLeft";
+import ButtonRight from "@/components/ButtonRight";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  //Sort blog posts by publish date
+  const sortedPosts = posts.sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+  );
+  const postsByYear = groupPostsByYear(sortedPosts);
+  // Sort years in descending order
+  const years = Object.keys(postsByYear).sort((a, b) => b - a);
+  //Get the current year
+  const currentYear = new Date().getFullYear();
+  //Define the years in order for the nav buttons
+  return years.map((year, index) => ({
+    params: { page: index === 0 ? undefined : year },
+    props: {
+      year: parseInt(year),
+      posts: postsByYear[year],
+      prevYear: years[index + 1],
+      nextYear: years[index - 1],
+      isCurrentYear: parseInt(year) === currentYear,
+    },
+  }));
+}
+
+const { year, posts, prevYear, nextYear } = Astro.props;
+---
+
+<BaseLayout title={`${year} Blog Posts`}>
+  <TitlePage
+    title={`${year} Blog Posts`}
+    iconName="solar:notebook-bookmark-bold-duotone"
+  />
+  <ListPostsSimple posts={posts} />
+  <nav class="flex justify-evenly">
+    {
+      nextYear && (
+        <ButtonLeft 
+          buttonLink={
+            parseInt(nextYear) === new Date().getFullYear()
+            ? "/blog" 
+            : `/blog/${nextYear}`
+          } 
+          buttonText={`${nextYear} Posts`} 
+          ariaLabel="Next Year" 
+        />
+      )
+    }
+    {
+      prevYear && (
+        <ButtonRight 
+          buttonLink={`/blog/${prevYear}`} 
+          buttonText={`${prevYear} Posts`} 
+          ariaLabel="Previous Year" 
+        />
+      )
+    }
+  </nav>
+</BaseLayout>

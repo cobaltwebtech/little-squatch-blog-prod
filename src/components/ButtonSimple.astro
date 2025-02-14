@@ -1,0 +1,17 @@
+---
+export interface Props {
+  buttonLink: string;
+  buttonText: string;
+}
+
+const { buttonLink, buttonText } = Astro.props;
+---
+
+<button type="button" class="my-8 block">
+  <a
+    href={buttonLink}
+    class="rounded-full bg-indigo-600 px-6 py-2 no-underline transition-colors duration-200 hover:bg-indigo-800 dark:bg-indigo-800 dark:hover:bg-indigo-600"
+  >
+    <span class="font-semibold text-white capitalize">{buttonText}</span>
+  </a>
+</button>

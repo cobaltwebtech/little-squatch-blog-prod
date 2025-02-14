@@ -26,5 +26,5 @@ exec(
     // success
     console.log(stdout);
     console.log("🖼️ Successfully replaced asset paths");
-  }
+  },
 );

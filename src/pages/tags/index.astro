@@ -1,24 +1,24 @@
 ---
-import BaseLayout from '@/layouts/BaseLayout'
-import TitlePage from '@/components/TitlePage'
-import { getTags } from '@/utils'
-import { sluglify } from '@/utils'
+import BaseLayout from "@/layouts/BaseLayout";
+import TitlePage from "@/components/TitlePage";
+import { getTags } from "@/utils";
+import { sluglify } from "@/utils";
 
-const tags = await getTags()
+const tags = await getTags();
 ---
 
-<BaseLayout title='Tags'>
-	<TitlePage title='Tags' />
-	<div class='flex justify-center flex-wrap gap-4'>
-		{
-			tags.map((tag) => (
-				<a
-					href={sluglify(`/tags/${tag}`)}
-					class='inline-block bg-slate-200 dark:bg-slate-700 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2'
-				>
-					#{tag}
-				</a>
-			))
-		}
-	</div>
+<BaseLayout title="Tags">
+  <TitlePage title="Tags" iconName="solar:tag-bold-duotone" />
+  <div class="flex flex-wrap justify-center gap-4 sm:gap-6">
+    {
+      tags.map((tag) => (
+        <a
+          href={sluglify(`/tags/${tag}`)}
+          class="inline-block rounded-full bg-slate-200 px-4 py-2 text-sm font-semibold dark:bg-slate-700"
+        >
+          #{tag}
+        </a>
+      ))
+    }
+  </div>
 </BaseLayout>

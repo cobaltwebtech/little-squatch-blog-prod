@@ -1,9 +1,9 @@
 interface DisqusConfig {
-	enabled: boolean
-	shortname: string
+  enabled: boolean;
+  shortname: string;
 }
 
 export const disqusConfig: DisqusConfig = {
-	enabled: false,
-	shortname: ''
-}
+  enabled: false,
+  shortname: "",
+};

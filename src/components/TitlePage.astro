@@ -1,14 +1,17 @@
 ---
-import Title from './Title.astro'
-import Shape from './icons/CameraIcon.astro'
-type Props = {
-	title: string
-}
+import { Icon } from "astro-icon/components";
 
-const { title } = Astro.props
+type Props = {
+  title: string;
+  iconName: string;
+};
+
+const { title, iconName } = Astro.props;
 ---
 
-<div class='flex justify-start items-center gap-2 title'>
-	<Shape />
-	<Title>{title}</Title>
+<div class="grid w-full grid-cols-1 justify-items-center gap-2">
+  <Icon name={iconName} class="size-16" />
+  <h1 class="text-center text-2xl font-bold sm:text-3xl md:pb-2.5 md:text-4xl capitalize">
+    {title}
+  </h1>
 </div>

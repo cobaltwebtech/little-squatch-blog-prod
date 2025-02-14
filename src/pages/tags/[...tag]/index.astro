@@ -1,27 +1,29 @@
 ---
-import BaseLayout from '@/layouts/BaseLayout'
-import ListPosts from '@/components/ListPosts'
-import TitlePage from '@/components/TitlePage'
-import { getTags, getPostByTag } from '@/utils'
-import { sluglify } from '@/utils'
+import BaseLayout from "@/layouts/BaseLayout";
+import ListPosts from "@/components/ListPosts";
+import TitlePage from "@/components/TitlePage";
+import { getTags, getPostByTag } from "@/utils";
+import { sluglify } from "@/utils";
+import Button from "@/components/Button";
 
 export async function getStaticPaths() {
-	const tags = await getTags()
+  const tags = await getTags();
 
-	return tags.map((tag) => ({
-		params: { 
-			tag: sluglify(tag.toLowerCase())
-		 },
-		props: { tag }
-	}))
+  return tags.map((tag) => ({
+    params: {
+      tag: sluglify(tag.toLowerCase()),
+    },
+    props: { tag },
+  }));
 }
 
-const { tag } = Astro.props
+const { tag } = Astro.props;
 
-const posts = await getPostByTag(tag)
+const posts = await getPostByTag(tag);
 ---
 
 <BaseLayout title={tag.charAt(0).toUpperCase() + tag.slice(1)}>
-	<TitlePage title={tag.charAt(0).toUpperCase() + tag.slice(1)} />
-	<ListPosts posts={posts} />
+  <TitlePage title={tag.charAt(0).toUpperCase() + tag.slice(1)} iconName="solar:tag-bold-duotone" />
+  <Button buttonLink="/tags" buttonText="Back to Tags" iconName="solar:arrow-left-bold-duotone"/>
+  <ListPosts posts={posts} />
 </BaseLayout>

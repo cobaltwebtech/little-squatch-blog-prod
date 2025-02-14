@@ -1,23 +1,22 @@
 ---
-import BaseLayout from '@/layouts/BaseLayout'
-import TitlePage from '@/components/TitlePage'
-import Shape from '../components/icons/Message-Check.astro'
-
+import BaseLayout from "@/layouts/BaseLayout";
+import TitlePage from "@/components/TitlePage";
+import Shape from "../components/icons/Message-Check.astro";
 ---
-<BaseLayout title='Message Received'>
-	<TitlePage title='Message Received' />
-        <div class="w-1/2">
-          <div>
-            <Shape />
-          </div>
-          <h2 class='text-2xl font-bold my-6'>
-            Thanks for Contacting the Little Squatch
-          </h2>
-          <p class='mb-6'>
-            Bet you didn't know a Sasquatch can read? Well, this one does and I promise to read your message and get back to you if you asked me. 
-          </p>
-          <p class='mb-6 font-bold'>
-            Little Squatch
-          </p>
-        </div>
+
+<BaseLayout title="Message Received">
+  <TitlePage title="Message Received" />
+  <div class="w-1/2">
+    <div>
+      <Shape />
+    </div>
+    <h2 class="my-6 text-2xl font-bold">
+      Thanks for Contacting the Little Squatch
+    </h2>
+    <p class="mb-6">
+      Bet you didn't know a Sasquatch can read? Well, this one does and I
+      promise to read your message and get back to you if you asked me.
+    </p>
+    <p class="mb-6 font-bold">Little Squatch</p>
+  </div>
 </BaseLayout>

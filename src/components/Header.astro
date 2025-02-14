@@ -1,81 +1,109 @@
 ---
-import ToggleTheme from './ToggleTheme.astro';
-import Logo from './icons/Logo.astro';
-import { Icon } from 'astro-icon/components';
-import type { NavItem } from '../utils/types';
+import ToggleTheme from "./ToggleTheme.astro";
+import Logo from "./icons/Logo.astro";
+import { Icon } from "astro-icon/components";
+import type { NavItem } from "../utils/types";
 
 //Array for menu items with Astro Icons
 const navItems: Array<NavItem> = [
-	{ title: "Gallery", url: "/gallery", iconName: "solar:gallery-bold-duotone" },
-	{ title: "Tags", url: "/tags", iconName: "solar:tag-bold-duotone" },
-	{ title: "About", url: "/about-little-squatch", iconName: "solar:info-square-bold-duotone" },
-	{ title: "Contact", url: "/contact", iconName: "solar:chat-line-bold-duotone" },
+  {
+    title: "Blog",
+    url: "/blog",
+    iconName: "solar:notebook-bookmark-bold-duotone",
+  },
+  { title: "Gallery", url: "/gallery", iconName: "solar:gallery-bold-duotone" },
+  { title: "Tags", url: "/tags", iconName: "solar:tag-bold-duotone" },
+  {
+    title: "About",
+    url: "/about-little-squatch",
+    iconName: "solar:info-square-bold-duotone",
+  },
+  {
+    title: "Contact",
+    url: "/contact",
+    iconName: "solar:chat-line-bold-duotone",
+  },
 ];
 ---
-<!-- Preline scripts are imported in the BaseLayout.astro component -->
-<!-- Main header component -->
+
+<!-- Preline scripts are imported in the BaseLayout.astro component --><!-- Main header component -->
 <header
-  class="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 sticky inset-x-0 top-4 z-50 flex flex-wrap text-sm md:flex-nowrap md:justify-start"
+  class="sticky inset-x-0 top-4 z-50 mx-auto flex max-w-screen-2xl flex-wrap px-2 text-sm sm:px-6 lg:flex-nowrap lg:justify-start lg:px-8"
 >
   <!-- Navigation container -->
   <nav
-    class="relative mx-2 w-full rounded-3xl sm:rounded-[36px] border border-indigo-400 bg-indigo-100 dark:bg-indigo-900 p-2 sm:px-4 sm:py-3 backdrop-blur-md dark:border-indigo-600 dark:backdrop-blur-md md:flex md:items-center md:justify-between md:px-6 md:py-0 lg:px-8 xl:mx-auto"
+    class="relative mx-2 w-full rounded-3xl border border-cyan-400 bg-cyan-800/85 p-2 backdrop-blur-md sm:rounded-[36px] sm:px-4 sm:py-3 md:px-4 lg:flex lg:items-center lg:justify-between lg:px-6 lg:py-0 xl:mx-auto dark:border-cyan-600 dark:bg-cyan-900/85 dark:backdrop-blur-md"
     aria-label="Navigation"
   >
     <div class="flex items-center justify-between gap-4">
       <!-- Brand logo -->
       <a
-        class="flex rounded-lg text-xl font-bold outline-none ring-slate-500 focus-visible:ring dark:ring-slate-200 dark:focus:outline-none"
+        class="flex rounded-lg text-xl font-bold ring-slate-500 outline-none focus-visible:ring dark:ring-slate-200 dark:focus:outline-none"
         href="/"
         aria-label="Little Squatch Blog logo"
       >
-        <div class='mx-auto w-[80px]'>
-            <Logo />
+        <div class="mx-auto w-[80px]">
+          <Logo />
         </div>
-        <div class="font-bold flex items-center mx-2 sm:w-28 xl:w-max text-lg lg:text-3xl text-indigo-800 dark:text-white lg:text-nowrap">Little Squatch Blog</div>
+        <div
+          class="mx-2 flex items-center text-lg font-bold text-white sm:text-xl sm:text-nowrap lg:w-max lg:text-2xl xl:text-3xl"
+        >
+          Little Squatch Blog
+        </div>
       </a>
       <!-- Collapse toggle for smaller screens -->
-      <div class="ml-auto md:hidden">
+      <div class="ml-auto lg:hidden">
         <button
           type="button"
-          class="hs-collapse-toggle flex size-8 items-center justify-center rounded-full text-sm font-bold text-indigo-800 dark:text-white transition duration-300 hover:bg-slate-200 disabled:pointer-events-none disabled:opacity-50 dark:text-slate-100 dark:hover:bg-slate-700 dark:focus:outline-none"
+          class="hs-collapse-toggle flex size-8 items-center justify-center text-sm font-bold text-white transition duration-300 disabled:pointer-events-none disabled:opacity-50 dark:focus:outline-none"
           data-hs-collapse="#navbar-collapse-with-animation"
           aria-controls="navbar-collapse-with-animation"
           aria-label="Toggle navigation"
         >
-            <Icon name="solar:hamburger-menu-line-duotone" class="size-8 flex-shrink-0 hs-collapse-open:hidden" />
-            <Icon name="solar:close-circle-bold-duotone" class="hidden size-8 flex-shrink-0 hs-collapse-open:block" />
+          <Icon
+            name="solar:hamburger-menu-line-duotone"
+            class="hs-collapse-open:hidden size-8 shrink-0"
+          />
+          <Icon
+            name="solar:close-circle-bold-duotone"
+            class="hs-collapse-open:block hidden size-8 shrink-0"
+          />
         </button>
       </div>
       <!-- ThemeIcon component specifically for smaller screens -->
-      <span class="inline-block md:hidden">
+      <span class="inline-block lg:hidden">
         <ToggleTheme />
       </span>
     </div>
     <!-- Contains navigation links -->
     <div
       id="navbar-collapse-with-animation"
-      class="hs-collapse hidden grow basis-full overflow-hidden transition-all duration-300 md:block"
+      class="hs-collapse hidden grow basis-full overflow-hidden transition-all duration-300 lg:block"
     >
       <!-- Navigation links container -->
       <div
-        class="m-5 sm:mr-0 flex flex-col gap-x-0 gap-y-4 md:flex-row md:items-center md:justify-end md:gap-x-4 lg:gap-x-7 md:gap-y-0 md:ps-5"
+        class="m-5 flex flex-col gap-x-0 gap-y-4 sm:mr-0 md:gap-x-4 lg:flex-row lg:items-center lg:justify-end lg:gap-x-7 lg:gap-y-0 lg:ps-5"
       >
         <!-- Menu items -->
-        <ul class="mx-auto md:mx-0 md:flex md:items-center md:gap-6">
-            {
-                navItems.map(({ title, url, iconName }) => (
-                <li>
-                    <a class="py-4 flex justify-start md:justify-center items-center text-nowrap text-md font-semibold" href={url}>
-                        <Icon name={iconName} class="size-8" />
-                        <span class="ml-2">{title}</span>
-                    </a>
-                </li>
-              ))
-            }
+        <ul
+          class="grid grid-flow-col grid-rows-3 gap-2 lg:grid-flow-row lg:grid-cols-5 lg:grid-rows-1"
+        >
+          {
+            navItems.map(({ title, url, iconName }) => (
+              <li>
+                <a
+                  class="text-md flex items-center justify-start py-4 font-semibold text-nowrap lg:justify-center"
+                  href={url}
+                >
+                  <Icon name={iconName} class="size-8 text-orange-400" />
+                  <span class="ml-2 text-white">{title}</span>
+                </a>
+              </li>
+            ))
+          }
         </ul>
         <!-- ThemeIcon component specifically for larger screens -->
-        <span class="hidden md:inline-block">
+        <span class="hidden lg:inline-block">
           <ToggleTheme />
         </span>
       </div>
@@ -84,107 +112,106 @@ const navItems: Array<NavItem> = [
 </header>
 <!-- Theme Appearance script to manage light/dark modes -->
 <script is:inline>
-    const HSThemeAppearance = {
-      init() {
-        const defaultTheme = "default";
-        let theme = localStorage.getItem("hs_theme") || defaultTheme;
-  
-        if (document.querySelector("html").classList.contains("dark")) return;
-        this.setAppearance(theme);
-      },
-      _resetStylesOnLoad() {
-        const $resetStyles = document.createElement("style");
-        $resetStyles.innerText = `*{transition: unset !important;}`;
-        $resetStyles.setAttribute("data-hs-appearance-onload-styles", "");
-        document.head.appendChild($resetStyles);
-        return $resetStyles;
-      },
-      setAppearance(theme, saveInStore = true, dispatchEvent = true) {
-        const $resetStylesEl = this._resetStylesOnLoad();
-  
-        if (saveInStore) {
-          localStorage.setItem("hs_theme", theme);
-        }
-  
-        if (theme === "auto") {
-          theme = window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "default";
-        }
-  
-        document.querySelector("html").classList.remove("dark");
-        document.querySelector("html").classList.remove("default");
-        document.querySelector("html").classList.remove("auto");
-  
-        document
-          .querySelector("html")
-          .classList.add(this.getOriginalAppearance());
-  
-        setTimeout(() => {
-          $resetStylesEl.remove();
-        });
-  
-        if (dispatchEvent) {
-          window.dispatchEvent(
-            new CustomEvent("on-hs-appearance-change", { detail: theme }),
-          );
-        }
-      },
-      getAppearance() {
-        let theme = this.getOriginalAppearance();
-        if (theme === "auto") {
-          theme = window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "default";
-        }
-        return theme;
-      },
-      getOriginalAppearance() {
-        const defaultTheme = "default";
-        return localStorage.getItem("hs_theme") || defaultTheme;
-      },
-    };
-    HSThemeAppearance.init();
-  
-    window
-      .matchMedia("(prefers-color-scheme: dark)")
-      .addEventListener("change", () => {
-        if (HSThemeAppearance.getOriginalAppearance() === "auto") {
-          HSThemeAppearance.setAppearance("auto", false);
-        }
+  const HSThemeAppearance = {
+    init() {
+      const defaultTheme = "default";
+      let theme = localStorage.getItem("hs_theme") || defaultTheme;
+
+      if (document.querySelector("html").classList.contains("dark")) return;
+      this.setAppearance(theme);
+    },
+    _resetStylesOnLoad() {
+      const $resetStyles = document.createElement("style");
+      $resetStyles.innerText = `*{transition: unset !important;}`;
+      $resetStyles.setAttribute("data-hs-appearance-onload-styles", "");
+      document.head.appendChild($resetStyles);
+      return $resetStyles;
+    },
+    setAppearance(theme, saveInStore = true, dispatchEvent = true) {
+      const $resetStylesEl = this._resetStylesOnLoad();
+
+      if (saveInStore) {
+        localStorage.setItem("hs_theme", theme);
+      }
+
+      if (theme === "auto") {
+        theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "default";
+      }
+
+      document.querySelector("html").classList.remove("dark");
+      document.querySelector("html").classList.remove("default");
+      document.querySelector("html").classList.remove("auto");
+
+      document
+        .querySelector("html")
+        .classList.add(this.getOriginalAppearance());
+
+      setTimeout(() => {
+        $resetStylesEl.remove();
       });
-  
-    window.addEventListener("load", () => {
-      const $clickableThemes = document.querySelectorAll(
-        "[data-hs-theme-click-value]",
-      );
-      const $switchableThemes = document.querySelectorAll(
-        "[data-hs-theme-switch]",
-      );
-  
-      $clickableThemes.forEach(($item) => {
-        $item.addEventListener("click", () =>
-          HSThemeAppearance.setAppearance(
-            $item.getAttribute("data-hs-theme-click-value"),
-            true,
-            $item,
-          ),
+
+      if (dispatchEvent) {
+        window.dispatchEvent(
+          new CustomEvent("on-hs-appearance-change", { detail: theme }),
         );
+      }
+    },
+    getAppearance() {
+      let theme = this.getOriginalAppearance();
+      if (theme === "auto") {
+        theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "default";
+      }
+      return theme;
+    },
+    getOriginalAppearance() {
+      const defaultTheme = "default";
+      return localStorage.getItem("hs_theme") || defaultTheme;
+    },
+  };
+  HSThemeAppearance.init();
+
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", () => {
+      if (HSThemeAppearance.getOriginalAppearance() === "auto") {
+        HSThemeAppearance.setAppearance("auto", false);
+      }
+    });
+
+  window.addEventListener("load", () => {
+    const $clickableThemes = document.querySelectorAll(
+      "[data-hs-theme-click-value]",
+    );
+    const $switchableThemes = document.querySelectorAll(
+      "[data-hs-theme-switch]",
+    );
+
+    $clickableThemes.forEach(($item) => {
+      $item.addEventListener("click", () =>
+        HSThemeAppearance.setAppearance(
+          $item.getAttribute("data-hs-theme-click-value"),
+          true,
+          $item,
+        ),
+      );
+    });
+
+    $switchableThemes.forEach(($item) => {
+      $item.addEventListener("change", (e) => {
+        HSThemeAppearance.setAppearance(e.target.checked ? "dark" : "default");
       });
-  
+
+      $item.checked = HSThemeAppearance.getAppearance() === "dark";
+    });
+
+    window.addEventListener("on-hs-appearance-change", (e) => {
       $switchableThemes.forEach(($item) => {
-        $item.addEventListener("change", (e) => {
-          HSThemeAppearance.setAppearance(e.target.checked ? "dark" : "default");
-        });
-  
-        $item.checked = HSThemeAppearance.getAppearance() === "dark";
-      });
-  
-      window.addEventListener("on-hs-appearance-change", (e) => {
-        $switchableThemes.forEach(($item) => {
-          $item.checked = e.detail === "dark";
-        });
+        $item.checked = e.detail === "dark";
       });
     });
+  });
 </script>
-  
