@@ -11,7 +11,9 @@ const { title, iconName } = Astro.props;
 
 <div class="grid w-full grid-cols-1 justify-items-center gap-2">
   <Icon name={iconName} class="size-16" />
-  <h1 class="text-center text-2xl font-bold sm:text-3xl md:pb-2.5 md:text-4xl capitalize">
+  <h1
+    class="text-center text-2xl font-bold capitalize sm:text-3xl md:pb-2.5 md:text-4xl"
+  >
     {title}
   </h1>
 </div>

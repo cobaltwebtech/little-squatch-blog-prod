@@ -57,7 +57,8 @@ export default defineConfig({
           "check-square-bold-duotone",
           "close-square-bold-duotone",
           "home-bold-duotone",
-          "album-line-duotone"
+          "album-line-duotone",
+          "chat-round-check-bold-duotone",
         ],
       },
     }),

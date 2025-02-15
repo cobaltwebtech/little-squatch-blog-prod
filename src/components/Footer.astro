@@ -1,4 +1,6 @@
 ---
+import { Icon } from "astro-icon/components";
+
 const today = new Date();
 ---
 
@@ -9,7 +11,10 @@ const today = new Date();
         &copy; {today.getFullYear()}
         <span class="text-lg font-bold">LittleSquatch.blog</span>
       </p>
-      <p class="mb-4">All Rights Reserved</p>
+      <p class="mb-4 text-sm">All Rights Reserved</p>
+      <div class="mx-auto w-max">
+        <Icon name="sasquatch" class="size-8" />
+      </div>
     </div>
     <div class="text-sm">
       <p class="mb-4">

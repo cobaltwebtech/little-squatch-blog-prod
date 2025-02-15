@@ -9,10 +9,12 @@ const { page } = Astro.props;
   <!-- Previous Button -->
   {
     page.start > 0 && (
-      <div
-        class="flex items-center justify-center"
-      >
-        <ButtonLeft buttonLink={page.url.prev} buttonText="Previous Page" ariaLabel="Category Previous Page"/>
+      <div class="flex items-center justify-center">
+        <ButtonLeft
+          buttonLink={page.url.prev}
+          buttonText="Previous Page"
+          ariaLabel="Category Previous Page"
+        />
       </div>
     )
   }
@@ -21,10 +23,12 @@ const { page } = Astro.props;
 
   {
     page.currentPage < page.lastPage && (
-      <div
-        class="ml-3 flex items-center justify-center"
-      >
-        <ButtonRight buttonLink={page.url.next} buttonText="Next Page" ariaLabel="Category Next Page"/>
+      <div class="ml-3 flex items-center justify-center">
+        <ButtonRight
+          buttonLink={page.url.next}
+          buttonText="Next Page"
+          ariaLabel="Category Next Page"
+        />
       </div>
     )
   }

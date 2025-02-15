@@ -5,13 +5,20 @@ import Button from "@/components/Button";
 ---
 
 <BaseLayout title="Page Not Found">
-  <TitlePage title="Page Not Found" iconName="solar:close-square-bold-duotone" />
-    <div class="font-normal text-center">
-      <h3 class="mb-6 text-3xl font-bold text-red-500">Error 404</h3>
-      <p class="mb-6">Oh crap, 4 oh WTF?!</p>
-      <p class="mb-6">
-        That page is not found, but that's okay. You can go back to the home page.
-      </p>
-      <Button buttonLink="/" buttonText="Go Home" iconName="solar:home-bold-duotone"/>
-    </div>
+  <TitlePage
+    title="Page Not Found"
+    iconName="solar:close-square-bold-duotone"
+  />
+  <div class="text-center font-normal">
+    <h3 class="mb-6 text-3xl font-bold text-red-500">Error 404</h3>
+    <p class="mb-6">Oh crap, 4 oh WTF?!</p>
+    <p class="mb-6">
+      That page is not found, but that's okay. You can go back to the home page.
+    </p>
+    <Button
+      buttonLink="/"
+      buttonText="Go Home"
+      iconName="solar:home-bold-duotone"
+    />
+  </div>
 </BaseLayout>

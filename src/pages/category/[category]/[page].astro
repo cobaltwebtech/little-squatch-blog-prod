@@ -37,7 +37,10 @@ const posts = page.data;
   title={unsluglifyNameCategory.charAt(0).toUpperCase() +
     unsluglifyNameCategory.slice(1)}
 >
-  <TitlePage title={unsluglifyNameCategory} iconName="solar:album-line-duotone"/>
+  <TitlePage
+    title={unsluglifyNameCategory}
+    iconName="solar:album-line-duotone"
+  />
   <ListCategories activeCategory={params.category} />
   <ListPosts posts={posts} />
   <Pagination page={page} />

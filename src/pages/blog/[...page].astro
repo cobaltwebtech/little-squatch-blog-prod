@@ -44,23 +44,23 @@ const { year, posts, prevYear, nextYear } = Astro.props;
   <nav class="flex justify-evenly">
     {
       nextYear && (
-        <ButtonLeft 
+        <ButtonLeft
           buttonLink={
             parseInt(nextYear) === new Date().getFullYear()
-            ? "/blog" 
-            : `/blog/${nextYear}`
-          } 
-          buttonText={`${nextYear} Posts`} 
-          ariaLabel="Next Year" 
+              ? "/blog"
+              : `/blog/${nextYear}`
+          }
+          buttonText={`${nextYear} Posts`}
+          ariaLabel="Next Year"
         />
       )
     }
     {
       prevYear && (
-        <ButtonRight 
-          buttonLink={`/blog/${prevYear}`} 
-          buttonText={`${prevYear} Posts`} 
-          ariaLabel="Previous Year" 
+        <ButtonRight
+          buttonLink={`/blog/${prevYear}`}
+          buttonText={`${prevYear} Posts`}
+          ariaLabel="Previous Year"
         />
       )
     }
