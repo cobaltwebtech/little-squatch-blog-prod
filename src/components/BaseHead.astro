@@ -2,6 +2,9 @@
 import { siteConfig } from "@/site-config";
 import { join } from "path";
 import { AstroFont } from "astro-font";
+import { getImage } from "astro:assets";
+import faviconSvgSrc from "../assets/favicons/icon.svg";
+import faviconSrc from "../assets/favicons/icon-maskable.png";
 
 export interface Props {
   title: string;
@@ -20,6 +23,19 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const socialImageURL = new URL(ogImage ? ogImage : "/open-graph.png", Astro.url)
   .href;
 
+// Generate and optimize the favicon images
+const faviconSvg = await getImage({
+  src: faviconSvgSrc,
+  format: "svg",
+});
+
+const appleTouchIcon = await getImage({
+  src: faviconSrc,
+  width: 180,
+  height: 180,
+  format: "png",
+});
+
 const titleSeparator = "|";
 
 const siteTitle = `${title} ${titleSeparator} ${siteConfig.title}`;
@@ -28,7 +44,6 @@ const siteTitle = `${title} ${titleSeparator} ${siteConfig.title}`;
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <meta name="generator" content={Astro.generator} />
 
 <!-- Canonical URL -->
@@ -63,6 +78,20 @@ const siteTitle = `${title} ${titleSeparator} ${siteConfig.title}`;
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={socialImageURL} />
+
+<!-- Links to the webmanifest and sitemap -->
+<link rel="manifest" href="/manifest.json" />
+<link rel="sitemap" href="/sitemap-index.xml" />
+
+<!-- Links for favicons -->
+<link href="/favicon.ico" rel="icon" sizes="any" type="image/x-icon" />
+<link href={faviconSvg.src} rel="icon" type="image/svg+xml" sizes="any" />
+<meta name="mobile-web-app-capable" content="yes" />
+<link href={appleTouchIcon.src} rel="apple-touch-icon" />
+<link href={appleTouchIcon.src} rel="shortcut icon" />
+
+<!-- Set theme color -->
+<meta name="theme-color" content="#007595" />
 
 <!-- RSS auto-discovery -->
 <link

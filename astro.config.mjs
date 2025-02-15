@@ -62,6 +62,13 @@ export default defineConfig({
         ],
       },
     }),
+    sitemap({
+      filter: (page) => {
+        const url = new URL(page);
+        if (url.pathname.includes("/success")) return false;
+        return true;
+      },
+    }),
     minify({
       CSS: false,
       HTML: true,
@@ -69,7 +76,6 @@ export default defineConfig({
       JavaScript: false,
       SVG: true,
     }),
-    sitemap(),
     compressor({
       gzip: false,
       brotli: true,
