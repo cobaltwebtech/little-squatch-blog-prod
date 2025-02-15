@@ -26,6 +26,7 @@ const posts = await getPostByTag(tag);
   <TitlePage
     title={tag.charAt(0).toUpperCase() + tag.slice(1)}
     iconName="solar:tag-bold-duotone"
+    iconClass="text-cyan-400 dark:text-orange-400"
   />
   <Button
     buttonLink="/tags"

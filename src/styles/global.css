@@ -49,6 +49,24 @@
   }
 }
 
+@layer components {
+  /* Table of Contents custom styles using dynamic classes */
+  .toc-active {
+    background-color: var(--color-orange-600);
+
+    @variant dark {
+      background-color: var(--color-orange-800);
+    }
+  }
+  .toc-inactive {
+    background-color: var(--color-teal-800);
+
+    @variant dark {
+      background-color: var(--color-teal-800);
+    }
+  }
+}
+
 @layer utilities {
   .prose a {
     @apply text-orange-600;

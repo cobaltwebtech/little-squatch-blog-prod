@@ -1,5 +1,4 @@
 ---
-import { cn } from "@/utils";
 const { heading } = Astro.props;
 
 type Heading = {
@@ -17,9 +16,7 @@ export interface Props {
 <li class="flex flex-col">
   <a
     href={"#" + heading.slug}
-    class={cn(
-      `text-xs text-center font-bold hover:bg-cyan-600 dark:hover:bg-cyan-900 py-2 px-4 rounded-full mb-2 first-letter:uppercase w-full line-clamp-2`,
-    )}
+    class="mb-2 line-clamp-2 w-full rounded-full px-4 py-2 text-center text-xs font-bold transition-colors duration-400 first-letter:uppercase hover:bg-orange-600 dark:hover:bg-orange-800"
   >
     <span class="text-white">{heading.text}</span>
   </a>

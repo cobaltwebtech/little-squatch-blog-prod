@@ -1,7 +1,7 @@
 {
   "name": "littlesquatchblog",
   "type": "module",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "The Little Squatch blog built with Astro",
   "author": "cobaltwebtech",
   "license": "MIT",

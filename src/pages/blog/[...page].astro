@@ -39,6 +39,7 @@ const { year, posts, prevYear, nextYear } = Astro.props;
   <TitlePage
     title={`${year} Blog Posts`}
     iconName="solar:notebook-bookmark-bold-duotone"
+    iconClass="text-cyan-400 dark:text-orange-400"
   />
   <ListPostsSimple posts={posts} />
   <nav class="flex justify-evenly">

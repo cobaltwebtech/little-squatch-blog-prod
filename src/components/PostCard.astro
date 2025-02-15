@@ -34,13 +34,17 @@ const {
       format="avif"
       class="h-full min-w-full rounded-[2px] object-cover transition-all duration-200 hover:scale-[101%]"
       alt={`Thumbnail image of ${title}`}
+      transition:name={`${slug}-image`}
     />
   </a>
 
   <div class="flex flex-col justify-between gap-4 py-6 pl-1 md:gap-0">
     <div class="flex flex-col gap-3">
       <div class="flex flex-col gap-2">
-        <h2 class="text-2xl font-semibold -tracking-wider">
+        <h2
+          class="text-2xl font-semibold -tracking-wider"
+          transition:name={`${slug}-title`}
+        >
           <a href={`/post/${slug}/`}>
             {title}
           </a>

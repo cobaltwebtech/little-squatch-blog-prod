@@ -8,7 +8,11 @@ const albums = await getCollection("albums");
 ---
 
 <BaseLayout title="Gallery">
-  <TitlePage title="Gallery" iconName="solar:gallery-bold-duotone" />
+  <TitlePage
+    title="Gallery"
+    iconName="solar:gallery-bold-duotone"
+    iconClass="text-cyan-400 dark:text-orange-400"
+  />
   <p class="text-center text-lg">A collection of my photos</p>
   <section class="container mx-auto grid grid-cols-2 gap-8">
     {
@@ -26,8 +30,13 @@ const albums = await getCollection("albums");
             ]}
           />
           <div class="mt-4 text-center">
-            <strong class="font-normal">{item.data.title}</strong>
-            <p class="text-xs text-slate-900 dark:text-slate-100">
+            <strong class="font-bold" transition:name={`${item.id}-title`}>
+              {item.data.title}
+            </strong>
+            <p
+              class="text-sm text-slate-900 dark:text-slate-100"
+              transition:name={`${item.id}-description`}
+            >
               {item.data.description}
             </p>
           </div>

@@ -11,9 +11,10 @@ type Props = {
   data: CollectionEntry<"blog">["data"];
   headings: MarkdownHeading[];
   readTime: string;
+  slug?: string;
 };
 
-const { data, readTime, headings, id } = Astro.props;
+const { data, readTime, headings, id, slug } = Astro.props;
 const { title, description, pubDate, heroImage, tags } = data;
 
 const articleDate = pubDate.toISOString();
@@ -33,6 +34,7 @@ const articleDate = pubDate.toISOString();
         </p>
         <h1
           class="text-center text-2xl font-semibold sm:text-4xl md:pb-2.5 md:text-6xl"
+          transition:name={`${slug}-title`}
         >
           {title}
         </h1>
@@ -56,6 +58,7 @@ const articleDate = pubDate.toISOString();
             loading="eager"
             class="my-8 max-h-[300px] w-full rounded-md object-cover md:max-h-[500px]"
             alt={`Banner hero image of ${title}`}
+            transition:name={`${slug}-image`}
           />
         )
       }
@@ -81,23 +84,11 @@ const articleDate = pubDate.toISOString();
         );
 
         if (entry.isIntersecting) {
-          index?.classList.remove("bg-teal-800", "dark:bg-teal-800"); // remove bg
-          index?.classList.add(
-            "bg-cyan-600",
-            "dark:bg-cyan-900",
-            "font-bold",
-            "transition-colors",
-            "duration-200",
-          );
+          index?.classList.remove("toc-inactive"); // Background colors set in global.css
+          index?.classList.add("toc-active");
         } else {
-          index?.classList.add("bg-teal-800", "dark:bg-teal-800"); // add bg
-          index?.classList.remove(
-            "bg-cyan-600",
-            "dark:bg-cyan-900",
-            "font-bold",
-            "transition-colors",
-            "duration-200",
-          );
+          index?.classList.add("toc-inactive");
+          index?.classList.remove("toc-active");
         }
       });
     }
