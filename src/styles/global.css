@@ -1,8 +1,6 @@
 @import "tailwindcss";
-/*@config "../../tailwind.config.mjs";*/
 @plugin "@tailwindcss/typography";
-@source "preline/dist"; /* <- not sure if it should point to the directory instead: "../preline/dist" */
-@plugin "preline/plugin"; /* Uses newish shorthand syntax from https://github.com/BALOTIAS/preline-tw-v4 */
+@import "../../node_modules/preline/variants.css";
 
 @theme {
   --color-black: theme(colors.slate.900);

@@ -11,7 +11,6 @@ export default defineConfig({
   site: "https://www.littlesquatch.blog/",
   content: [
     "./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}",
-    "./node_modules/preline/preline.js",
   ],
   vite: {
     plugins: [tailwindcss()],

@@ -15,11 +15,6 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-#generated types
-yarn.lock
-package-lock.json
-tina-lock.json
-
 # environment variables
 .env
 .env.production
