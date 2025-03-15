@@ -9,9 +9,7 @@ import minify from "@playform/compress";
 
 export default defineConfig({
   site: "https://www.littlesquatch.blog/",
-  content: [
-    "./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}",
-  ],
+  content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   vite: {
     plugins: [tailwindcss()],
   },

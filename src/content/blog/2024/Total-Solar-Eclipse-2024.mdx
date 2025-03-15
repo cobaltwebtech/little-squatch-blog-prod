@@ -21,6 +21,7 @@ import photo6 from "/src/content/albums/2024/solar-eclipse/Solar-Eclipse-2024-12
 import photo7 from "/src/content/albums/2024/solar-eclipse/Solar-Eclipse-2024-composite.jpg";
 import photo8 from "/src/assets/images/2024/solar-eclipse/Solar-Eclipse-2024-17.jpg";
 import Sasquatch from "/src/components/icons/Sasquatch.astro";
+import Button from "/src/components/ButtonSimple.astro";
 
 ## Celestial Bodies Aligning
 
@@ -273,17 +274,10 @@ If you did not get to see the eclipse yourself, I hope that looking at my photos
 
 Feel free to take a look at the full album, which has larger size images. If you have any questions on how I shot and edited these photos, send me a message [here](/contact).
 
-<button class="my-8">
-  <a
-    href="/gallery/2024/solar-eclipse"
-    class="rounded-full bg-indigo-600 px-4 py-4 font-bold capitalize no-underline transition-colors duration-200 hover:bg-indigo-800 dark:bg-indigo-800 dark:hover:bg-indigo-600"
-    target="_blank"
-  >
-    <span class="text-white hover:text-white dark:text-white dark:hover:text-white">
-      View Full Photo Album
-    </span>
-  </a>
-</button>
+<Button
+  buttonLink="/gallery/2024/solar-eclipse"
+  buttonText="View Full Photo Album"
+/>
 
 Thanks as always for stopping by and watch out for the Squatch!
 
