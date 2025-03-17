@@ -39,7 +39,7 @@
     "astro-font": "^1.0.0",
     "lenis": "^1.2.3",
     "photoswipe": "^5.4.4",
-    "preline": "^3.0.0",
+    "preline": "^3.0.1",
     "reading-time": "^1.5.0",
     "slugify": "^1.6.6",
     "tailwind-merge": "^3.0.2",
