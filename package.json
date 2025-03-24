@@ -29,7 +29,7 @@
     "clean": "rimraf dist .astro node_modules yarn.lock pnpm-lock.yaml .yarn .netlify"
   },
   "dependencies": {
-    "@astrojs/mdx": "4.2.0",
+    "@astrojs/mdx": "4.2.1",
     "@astrojs/rss": "^4.0.11",
     "@astrojs/sitemap": "^3.2.1",
     "@playform/compress": "^0.1.7",
