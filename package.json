@@ -31,7 +31,7 @@
   "dependencies": {
     "@astrojs/mdx": "4.2.0",
     "@astrojs/rss": "^4.0.11",
-    "@astrojs/sitemap": "^3.2.1",
+    "@astrojs/sitemap": "^3.3.0",
     "@playform/compress": "^0.1.7",
     "@tailwindcss/vite": "^4.0.14",
     "astro": "5.5.2",
