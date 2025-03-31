@@ -65,7 +65,7 @@
     "prettier-plugin-tailwindcss": "^0.6.11",
     "rimraf": "^6.0.1",
     "typescript": "^5.8.2",
-    "typescript-eslint": "^8.26.1"
+    "typescript-eslint": "^8.28.0"
   },
   "lint-staged": {
     "*.{astro,js,jsx,ts,tsx,md,mdx,json}": [
