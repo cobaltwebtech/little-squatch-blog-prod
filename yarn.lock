@@ -1954,10 +1954,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"astro-font@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "astro-font@npm:1.0.0"
-  checksum: 10c0/3bdb0f1563e9c1b865a08321ac1223afac72d1871f8953858be743d668a29a7cf8c6a81a641400994bc4e5aca51febed0f28a0e885430c6e2b84937acfce17ee
+"astro-font@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "astro-font@npm:1.1.0"
+  checksum: 10c0/2015bf185ed9f7038f58a0ae14b9638cf807be9ad8d576b011cdd3cc98124ad0a221ccbc19e9eabea0fc5a57f26e9e09109f4ac5e2602e1e73a8b5659330e29a
   languageName: node
   linkType: hard
 
@@ -5160,7 +5160,7 @@ __metadata:
     "@typescript-eslint/parser": "npm:^8.26.1"
     astro: "npm:5.6.2"
     astro-compressor: "npm:^1.0.0"
-    astro-font: "npm:^1.0.0"
+    astro-font: "npm:^1.1.0"
     astro-icon: "npm:^1.1.5"
     clsx: "npm:^2.1.1"
     eslint: "npm:^9.22.0"
