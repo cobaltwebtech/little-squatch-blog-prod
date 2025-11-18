@@ -3,7 +3,6 @@ dist/
 .astro/
 .idea/
 .vercel/
-.yarn/
 .netlify/
 
 # dependencies
