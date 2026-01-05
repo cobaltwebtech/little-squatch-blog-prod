@@ -28,15 +28,18 @@ const {
         >
           <div class="flex flex-col justify-center gap-1">
             <FormattedDate date={pubDate} />
-            <span class="text-sm">{readTime}</span>
+            <span class="text-sm font-light">{readTime}</span>
           </div>
           <div>{category}</div>
         </div>
       </div>
       <CldImage
         src={heroImage}
+        width={1200}
+        height={300}
         format="avif"
-        class="h-[300px] w-full object-cover transition-all duration-200 will-change-transform group-hover:scale-[1.05]"
+        quality="50"
+        class="h-75 w-full object-cover transition-all duration-200 will-change-transform group-hover:scale-[1.05]"
         alt={`Thumbnail image of ${title}`}
         transition:name={`${id}-image`}
       />

@@ -1,33 +1,32 @@
 ---
-
 import type { CollectionEntry } from "astro:content";
-import { render } from "astro:content";
 import PostCard from "@/components/post/PostCard.astro";
 import { cn } from "@/lib/cn";
+import { getReadingTime } from "@/lib/reading-time";
 
 type Props = {
   posts: CollectionEntry<"blog">[];
-  FirstBig?: boolean;
+  firstColSpan?: boolean;
 };
 
-const { posts, FirstBig = false } = Astro.props;
+const { posts, firstColSpan = false } = Astro.props;
 ---
 
 <section
   class={cn(
     `grid sm:grid-cols-2 md:grid-cols-3 gap-8 mt-4`,
-    FirstBig && `md:[&>*:first-child]:col-span-2`,
+    firstColSpan && `md:[&>*:first-child]:col-span-2`,
   )}
 >
   {
-    posts.map(async (post) => {
-      const { remarkPluginFrontmatter } = await render(post);
+    posts.map((post) => {
+      const readingTime = getReadingTime(post.body ?? "");
 
       return (
         <PostCard
           id={post.id}
           data={post.data}
-          readTime={remarkPluginFrontmatter.minutesRead}
+          readTime={readingTime}
         />
       );
     })
