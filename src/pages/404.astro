@@ -1,24 +1,27 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout";
-import TitlePage from "@/components/TitlePage";
-import Button from "@/components/Button";
+
+import { Icon } from "astro-icon/components";
+import BaseLayout from "@/base/BaseLayout.astro";
+import { Button } from "@/components/starwind/button";
+import TitlePage from "@/components/ui/TitlePage.astro";
 ---
 
 <BaseLayout title="Page Not Found">
   <TitlePage
     title="Page Not Found"
-    iconName="solar:close-square-bold-duotone"
+    iconName="close-square-bold-duotone"
+    iconClass="text-error"
   />
-  <div class="text-center font-normal">
-    <h3 class="mb-6 text-3xl font-bold text-red-500">Error 404</h3>
-    <p class="mb-6">Oh crap, 4 oh WTF?!</p>
-    <p class="mb-6">
-      That page is not found, but that's okay. You can go back to the home page.
+  <div class="space-y-6 text-center font-normal">
+    <h3 class="text-error text-3xl font-bold">Error 404</h3>
+    <p>Oh crap, 4 oh WTF?!</p>
+    <p>
+      That page does not exist, but that's okay. You can go back to the home
+      page.
     </p>
-    <Button
-      buttonLink="/"
-      buttonText="Go Home"
-      iconName="solar:home-bold-duotone"
-    />
+    <Button href="/" variant="info">
+      <Icon name="home-bold-duotone" class="size-6" />
+      <span>Back to Home</span>
+    </Button>
   </div>
 </BaseLayout>

@@ -1,0 +1,24 @@
+---
+
+import { Icon } from "astro-icon/components";
+import { Button } from "@/components/starwind/button";
+import { sluglify } from "@/lib/sluglify";
+
+export interface Props {
+  tag: string;
+}
+
+const { tag } = Astro.props;
+---
+
+<Button
+  href={sluglify(`/tags/${tag.toLowerCase()}`)}
+  variant="secondary"
+  class="group rounded-full"
+  aria-label={tag}
+>
+  <span
+    class="text-sm font-light transition-transform duration-300 group-hover:translate-x-1"
+    >#{tag ?? "Blog Tag"}</span
+  >
+</Button>

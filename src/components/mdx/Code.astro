@@ -3,7 +3,7 @@ import { Icon } from "astro-icon/components";
 ---
 
 <pre
-  class="shiki shiki-themes code relative bg-white dark:bg-slate-950"><button aria-label="copy-button" class="copy-button absolute z-20 top-2 right-2 rounded-md transition-all ease-in max-w-full max-h-fit dark:text-slate-600 text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400"><Icon name='solar:copy-bold-duotone' class='size-8' /></button><span class="check-span absolute z-10 top-2 right-2 rounded-md transition-all ease-in opacity-0 max-w-full max-h-fit "><Icon name='solar:check-square-bold-duotone' class='size-8 text-teal-700 dark:text-teal-500' /></span><slot />
+  class="shiki shiki-themes code bg-background-reverse relative"><button type="button" aria-label="copy-button" class="copy-button absolute z-20 top-2 right-2 rounded-md transition-all ease-in max-w-full max-h-fit"><Icon name="copy-bold-duotone" class="size-8" /></button><div class="check-icon hidden z-10 top-2 right-2 rounded-md transition-all ease-in max-w-full max-h-fit"><Icon name="check-square-bold-duotone" class="size-8 text-success" /></div><slot />
 </pre>
 
 <script>
@@ -11,18 +11,24 @@ import { Icon } from "astro-icon/components";
     const codeBlock = document.querySelectorAll("pre");
 
     codeBlock.forEach((code) => {
-      const button = code.querySelector(".copy-button");
-      const check = code.querySelector(".check-span");
+      const copyButton = code.querySelector(".copy-button");
+      const checkIcon = code.querySelector(".check-icon");
 
-      button!.addEventListener("click", () => {
-        navigator.clipboard.writeText(code.textContent?.trim() || "");
-        check?.classList.remove("opacity-0");
-        button?.classList.add("opacity-0");
-        setTimeout(() => {
-          check?.classList.add("opacity-0");
-          button?.classList.remove("opacity-0");
-        }, 2000);
-      });
+      if (copyButton) {
+        copyButton.addEventListener("click", () => {
+          navigator.clipboard.writeText(code.textContent?.trim() || "");
+          checkIcon?.classList.remove("hidden");
+          checkIcon?.classList.add("absolute");
+          copyButton?.classList.remove("aboslute");
+          copyButton?.classList.add("hidden");
+          setTimeout(() => {
+            checkIcon?.classList.add("hidden");
+            checkIcon?.classList.remove("aboslute");
+            copyButton?.classList.add("absolute");
+            copyButton?.classList.remove("hidden");
+          }, 2500);
+        });
+      }
     });
   };
   copyBlock(); // initial load

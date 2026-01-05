@@ -1,38 +1,20 @@
 ---
-import ListCategories from "@/components/ListCategories";
-import ListPosts from "@/components/ListPosts";
-import TitlePage from "@/components/TitlePage";
-import BaseLayout from "@/layouts/BaseLayout";
-import { getPosts } from "@/utils";
+
+import BaseLayout from "@/base/BaseLayout.astro";
+import ListCategories from "@/components/post/ListCategories.astro";
+import ListPosts from "@/components/post/ListPosts.astro";
+import TitlePage from "@/components/ui/TitlePage.astro";
+import { getPosts } from "@/lib/post";
 
 const MAX_POSTS = 5; // max number of posts to show on the home page
 const posts = await getPosts(MAX_POSTS);
 ---
 
 <BaseLayout title="LittleSquatch.blog">
-  <TitlePage title="Welcome to LittleSquatch.blog" iconName="camera" />
+  <TitlePage title="Welcome to LittleSquatch.Blog" iconName="camera" />
   <ListCategories />
-
-  <div>
+  <section>
     <p class="text-lg font-semibold tracking-wide">Recent Posts</p>
     <ListPosts FirstBig={true} posts={posts} />
-  </div>
+  </section>
 </BaseLayout>
-
-<script>
-  import { animate } from "motion";
-  const showAnimations = localStorage.getItem("animations") === "true";
-
-  if (showAnimations) {
-    animate(
-      ".title",
-      { y: [80, 0], opacity: [0, 1] },
-      {
-        duration: 2.5,
-        opacity: { duration: 3 },
-
-        offset: [0, 0.55, 0.75],
-      },
-    );
-  }
-</script>

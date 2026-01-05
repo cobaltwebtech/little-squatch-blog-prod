@@ -1,0 +1,70 @@
+---
+
+import type { CollectionEntry } from "astro:content";
+import type { MarkdownHeading } from "astro";
+import { CldImage } from "astro-cloudinary";
+import BaseLayout from "@/base/BaseLayout.astro";
+import FormattedDate from "@/components/post/FormattedDate.astro";
+import Tag from "@/components/post/Tag.astro";
+
+type Props = {
+  id: CollectionEntry<"blog">["id"];
+  data: CollectionEntry<"blog">["data"];
+  headings: MarkdownHeading[];
+  readTime?: string;
+};
+
+const { id, data, readTime } = Astro.props;
+const { title, description, pubDate, heroImage, tags } = data;
+
+const articleDate = pubDate.toISOString();
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  image={heroImage}
+  articleDate={articleDate}
+>
+  <article class="my-6 md:my-12">
+    <section class="mb-3 flex flex-col items-center justify-center gap-6">
+      <div class="flex flex-col gap-2">
+        <p class="text-center text-sm">
+          Published <FormattedDate date={pubDate} /> - {readTime}
+        </p>
+        <h1
+          class="text-center text-2xl font-semibold sm:text-4xl md:mb-2.5 md:text-6xl"
+          transition:name={`${id}-title`}
+        >
+          {title}
+        </h1>
+      </div>
+
+      <div
+        class="flex flex-wrap items-center justify-center gap-2 gap-y-4 md:gap-5"
+      >
+        {tags.map((tag: string) => <Tag tag={tag} />)}
+      </div>
+    </section>
+
+    {
+      heroImage && (
+        <section class="my-8">
+          <CldImage
+            src={heroImage}
+            width={1280}
+            format="avif"
+            loading="eager"
+            alt={`Banner hero image of ${title}`}
+            class="mx-auto rounded-lg"
+            transition:name={`${id}-image`}
+          />
+        </section>
+      )
+    }
+    <hr class="border-muted-foreground" />
+    <section class="blog-body">
+      <slot />
+    </section>
+  </article>
+</BaseLayout>

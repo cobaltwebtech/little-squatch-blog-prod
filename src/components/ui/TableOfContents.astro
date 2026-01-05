@@ -1,0 +1,139 @@
+---
+const { headings } = Astro.props;
+
+type TableOfContent = {
+  depth: number;
+  text: string;
+  slug: string;
+  subheadings: TableOfContent[];
+};
+
+const toc = buildToc(headings);
+function buildToc(headings: TableOfContent[]) {
+  let toc: TableOfContent[] = [];
+  let parentHeadings = new Map();
+  headings.forEach((h) => {
+    let heading = { ...h, subheadings: [] };
+    parentHeadings.set(heading.depth, heading);
+    // Change 2 to 1 if your markdown includes your <h1>
+    if (heading.depth === 1 || heading.depth === 2) {
+      toc.push(heading);
+    } else {
+      parentHeadings.get(heading.depth - 1).subheadings.push(heading);
+    }
+  });
+  return toc;
+}
+---
+
+<nav class="w-full" aria-labelledby="toc-heading">
+  <h2 id="toc-heading" class="mb-4 text-xl font-bold">Jump to Section</h2>
+  <ul class="flex flex-col gap-6 text-sm leading-tight font-light text-balance">
+    {
+      toc.map((heading) => (
+        <li class="flex flex-col">
+          <a
+            href={"#" + heading.slug}
+            class="toc-link line-clamp-2 block rounded p-2 transition-colors duration-300"
+            aria-label={`Jump to section: ${heading.text}`}
+            data-target={heading.slug}
+          >
+            <span class="text-default">{heading.text}</span>
+          </a>
+          {heading.subheadings.length > 0 && (
+            <ul class="ml-3" aria-label="Subsections">
+              {heading.subheadings.map((subheading) => (
+                <li>
+                  <a
+                    href={"#" + subheading.slug}
+                    class="toc-link line-clamp-2 block rounded p-2 transition-colors duration-300"
+                    aria-label={`Jump to section: ${subheading.text}`}
+                    data-target={subheading.slug}
+                  >
+                    <span class="text-default">{subheading.text}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<script>
+  // Declare the global variable
+  declare global {
+    interface Window {
+      tocObserver?: IntersectionObserver;
+    }
+  }
+
+  function initTableOfContents() {
+    const tocLinks = document.querySelectorAll(".toc-link");
+    const headings = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+    // Clean up existing observer if it exists
+    if (window.tocObserver) {
+      window.tocObserver.disconnect();
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Remove active class from all links
+            tocLinks.forEach((link) => {
+              link.classList.remove("bg-card", "text-accent-foreground");
+            });
+
+            // Find corresponding TOC link and add active class
+            const targetId = entry.target.id;
+            const activeLink = document.querySelector(
+              `[data-target="${targetId}"]`,
+            );
+            if (activeLink) {
+              activeLink.classList.add("bg-card", "text-accent-foreground");
+            }
+          }
+        });
+      },
+      {
+        rootMargin: "-20% 0% -35% 0%",
+        threshold: 0,
+      },
+    );
+
+    // Store observer globally for cleanup
+    window.tocObserver = observer;
+
+    headings.forEach((heading) => {
+      if (heading.id) {
+        observer.observe(heading);
+      }
+    });
+
+    tocLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute("data-target");
+        if (targetId) {
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        }
+      });
+    });
+  }
+
+  // Initialize on DOM ready
+  document.addEventListener("DOMContentLoaded", initTableOfContents);
+
+  // Re-initialize on view transitions
+  document.addEventListener("astro:page-load", initTableOfContents);
+</script>

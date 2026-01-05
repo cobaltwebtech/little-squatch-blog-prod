@@ -1,18 +1,21 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout";
-import ListPosts from "@/components/ListPosts";
-import ListCategories from "@/components/ListCategories";
-import TitlePage from "@/components/TitlePage";
-import { sluglify, unsluglify, getCategories, getPosts } from "@/utils";
-import { siteConfig } from "@/data/site.config";
-import Pagination from "@/components/Pagination";
+import type { CollectionEntry } from "astro:content";
+import type { GetStaticPaths, Page } from "astro";
+import BaseLayout from "@/base/BaseLayout.astro";
+import ListCategories from "@/components/post/ListCategories.astro";
+import ListPosts from "@/components/post/ListPosts.astro";
+import Pagination from "@/components/ui/Pagination.astro";
+import TitlePage from "@/components/ui/TitlePage.astro";
+import { getCategories, getPosts } from "@/lib/post";
+import { siteConfig } from "@/lib/site-data";
+import { sluglify, unsluglify } from "@/lib/sluglify";
 
-export async function getStaticPaths({ paginate }: any) {
+export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
   const categories = await getCategories();
   const allPosts = await getPosts();
 
   return categories.flatMap((category: string) => {
-    const unsluglifyNameCategory = unsluglify(category!.toLowerCase());
+    const unsluglifyNameCategory = unsluglify(category.toLowerCase());
     const filteredPosts = allPosts.filter(
       (post) => post.data.category.toLowerCase() === unsluglifyNameCategory,
     );
@@ -24,12 +27,13 @@ export async function getStaticPaths({ paginate }: any) {
       pageSize: siteConfig.paginationSize,
     });
   });
-}
+};
 
 const params = Astro.params;
-const { page } = Astro.props;
+const { page } = Astro.props as { page: Page<CollectionEntry<"blog">> };
 
-const unsluglifyNameCategory = unsluglify(params.category!.toLowerCase());
+const categoryParam = String(params.category ?? "");
+const unsluglifyNameCategory = unsluglify(categoryParam.toLowerCase());
 const posts = page.data;
 ---
 
@@ -39,10 +43,10 @@ const posts = page.data;
 >
   <TitlePage
     title={unsluglifyNameCategory}
-    iconName="solar:album-line-duotone"
-    iconClass="text-cyan-400 dark:text-orange-400"
+    iconName="album-line-duotone"
+    iconClass="text-anchor"
   />
-  <ListCategories activeCategory={params.category} />
+  <ListCategories activeCategory={categoryParam} />
   <ListPosts posts={posts} />
   <Pagination page={page} />
 </BaseLayout>

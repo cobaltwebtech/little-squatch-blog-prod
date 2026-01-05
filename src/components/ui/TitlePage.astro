@@ -1,0 +1,22 @@
+---
+import { Icon } from "astro-icon/components";
+
+type Props = {
+  title: string;
+  iconName: string;
+  iconClass?: string;
+};
+
+const { title, iconName, iconClass } = Astro.props;
+---
+
+<section class="mb-4 flex w-full flex-col justify-center gap-2 space-y-4">
+  <div class="mx-auto">
+    <Icon name={iconName} class:list={["size-16", iconClass]} />
+  </div>
+  <h1
+    class="text-center text-2xl font-bold tracking-wide sm:text-3xl md:text-4xl"
+  >
+    {title}
+  </h1>
+</section>

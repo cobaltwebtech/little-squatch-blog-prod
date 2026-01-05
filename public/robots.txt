@@ -1,4 +1,39 @@
-User-agent: *
+User-agent: Googlebot
+Disallow:
 Allow: /
+Crawl-delay: 10
+
+User-agent: Bingbot
+Disallow:
+Allow: /
+Crawl-delay: 2
+
+User-agent: AhrefsBot
+Disallow:
+Allow: /
+Crawl-delay: 2
+
+User-agent: AhrefsSiteAudit
+Disallow:
+Allow: /
+Crawl-delay: 2
+
+User-agent: DuckDuckBot
+Disallow:
+Allow: /
+Crawl-delay: 2
+
+User-agent: Yandex
+Disallow:
+Allow: /
+Crawl-delay: 2
+
+User-agent: archive.org_bot
+Disallow:
+Allow: /
+Crawl-delay: 2
+
+User-agent: *
+Disallow: /
 
 Sitemap: https://www.littlesquatch.blog/sitemap-index.xml

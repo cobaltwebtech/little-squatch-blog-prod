@@ -1,0 +1,27 @@
+{
+	// Enable pasting files into a Markdown editor to create Markdown links.
+	"markdown.editor.filePaste.enabled": "always",
+
+	// Copy pasted media files into a Markdown editor to the workspace.
+	"markdown.editor.filePaste.copyIntoWorkspace": "mediaFiles",
+
+	// Enable dropping files into a Markdown editor to create Markdown links.
+	"markdown.editor.drop.enabled": "always",
+
+	// Copy dropped media files into a Markdown editor to the workspace.
+	"markdown.editor.drop.copyIntoWorkspace": "mediaFiles",
+
+	// Define the destination folder for copied files.
+	"markdown.copyFiles.destination": {
+		"/src/content/**/*": "/src/images/content/${documentBaseName}/"
+	},
+
+	"[astro]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"editor.codeActionsOnSave": {
+		"source.organizeImports.biome": "explicit",
+		"source.fixAll.biome": "explicit"
+	},
+	"css.validate": false
+}

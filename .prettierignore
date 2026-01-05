@@ -1,9 +1,0 @@
-test/fixtures/**/*.md
-test/fixtures/**/*.astro
-**/dist
-yarn.lock
-pnpm-lock.yaml
-.github
-.changeset
-.astro
-.vercel

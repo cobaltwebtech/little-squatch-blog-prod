@@ -1,67 +1,61 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
-import BlogPost from "@/layouts/BlogPost";
-import Code from "@/components/mdx/Code";
-import ListRelatedPosts from "@/components/ListRelatedPosts";
-import TableOfContents from "@/components/TableOfContents";
-import { getPosts } from "@/utils";
-import SButton from "@/components/mdx/SButton";
-import Disqus from "@/components/Disqus";
-import { disqusConfig } from "@/data/disqus.config";
 
-const posts = await getCollection("blog");
-export async function getStaticPaths() {
-  const posts = await getPosts();
-
-  return posts.map((post) => ({
-    params: { slug: post.slug },
-    props: post,
-  }));
-}
+import { type CollectionEntry, getCollection, render } from "astro:content";
+import BlogPost from "@/base/BlogPost.astro";
+import Code from "@/components/mdx/Code.astro";
+import ListRelatedPosts from "@/components/post/ListRelatedPosts.astro";
+import TableOfContents from "@/components/ui/TableOfContents.astro";
+import { getPosts } from "@/lib/post";
+import { getReadingTime } from "@/lib/reading-time";
 
 type Props = CollectionEntry<"blog">;
 
+const posts = await getCollection("blog");
 const post = Astro.props;
-
 const MAX_POSTS = 3;
 const getRelatedPosts = (post: Props) => {
-  const lowercaseTags = post.data.tags.map((tag) => tag.toLowerCase());
+  const lowercaseTags = post.data.tags.map((tag: string) => tag.toLowerCase());
   const relatedPosts = posts.filter(
-    (p) =>
-      p.slug !== post.slug &&
-      p.data.tags.some((t) => lowercaseTags.includes(t.toLowerCase())),
+    (p: CollectionEntry<"blog">) =>
+      p.id !== post.id &&
+      p.data.tags.some((t: string) => lowercaseTags.includes(t.toLowerCase())),
   );
   return relatedPosts.slice(0, MAX_POSTS);
 };
-
 const relatedPosts = getRelatedPosts(post);
+const readingTime = getReadingTime(post.body ?? "");
+const { Content, headings } = await render(post);
 
-const { Content, headings, remarkPluginFrontmatter } = await post.render();
+export async function getStaticPaths() {
+  const posts = await getPosts();
 
-const disqusEnabled = disqusConfig.enabled;
+  return posts.map((post: CollectionEntry<"blog">) => ({
+    params: { slug: post.id },
+    props: post,
+  }));
+}
 ---
 
 <BlogPost
   id={post.id}
   data={post.data}
   headings={headings}
-  readTime={remarkPluginFrontmatter.minutesRead}
-  slug={post.slug}
+  readTime={readingTime}
 >
-  <div class="mt-8 grid grid-cols-1 gap-10 md:grid-cols-[auto_15%]">
-    <!-- post -->
-    <article class="w-full max-w-full">
-      <div class="prose prose-slate dark:prose-invert mb-12 min-w-full">
-        <Content components={{ pre: Code, SButton }} />
-      </div>
-
-      <!-- related posts -->
-      <footer>
-        <h2 class="mb-6 text-lg font-bold dark:text-white">Related Posts</h2>
+  <div class="mt-8 grid gap-10 md:grid-cols-[auto_15%]">
+    <!-- Blog post using TW Typography plugin with the .prose class -->
+    <article class="w-full">
+      <section class="prose prose-slate dark:prose-invert mb-12 min-w-full">
+        <Content components={{ pre: Code }} />
+      </section>
+      <hr class="border-muted-foreground" />
+      <!-- Related posts -->
+      <section class="mt-8">
+        <h5 class="mb-6 text-xl font-bold">Related Posts</h5>
         <ListRelatedPosts posts={relatedPosts} />
-      </footer>
+      </section>
     </article>
-    <!-- aside  -->
+    <!-- Aside (Table of Contents)  -->
     <aside class="hidden flex-col gap-8 md:flex">
       <div
         class="sticky top-32 hidden self-start transition-all duration-200 md:block"
@@ -70,6 +64,4 @@ const disqusEnabled = disqusConfig.enabled;
       </div>
     </aside>
   </div>
-
-  {disqusEnabled && <Disqus />}
 </BlogPost>

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://starwind.dev/config-schema.json",
+  "tailwind": {
+    "css": "src/styles/global.css",
+    "baseColor": "slate",
+    "cssVariables": true
+  },
+  "componentDir": "src/components",
+  "components": [
+    {
+      "name": "button",
+      "version": "2.0.1"
+    },
+    {
+      "name": "avatar",
+      "version": "1.1.1"
+    },
+    {
+      "name": "breadcrumb",
+      "version": "1.0.0"
+    },
+    {
+      "name": "pagination",
+      "version": "2.0.1"
+    },
+    {
+      "name": "card",
+      "version": "1.1.0"
+    },
+    {
+      "name": "input",
+      "version": "1.1.1"
+    },
+    {
+      "name": "textarea",
+      "version": "1.1.1"
+    }
+  ]
+}

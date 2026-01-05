@@ -1,0 +1,30 @@
+---
+import { Button } from "@/components/starwind/button";
+
+const { page } = Astro.props;
+---
+
+<div class="flex justify-around gap-5 md:gap-1">
+  <!-- Previous Button -->
+  {
+    page.start > 0 && (
+      <div class="flex items-center justify-center">
+        <Button href={page.url.prev} aria-label="Category Previous Page">
+          <span>Previous Page</span>
+        </Button>
+      </div>
+    )
+  }
+
+  <!-- Next Button -->
+
+  {
+    page.currentPage < page.lastPage && (
+      <div class="ml-3 flex items-center justify-center">
+        <Button href={page.url.next} aria-label="Category Next Page">
+          <span>Next Page</span>
+        </Button>
+      </div>
+    )
+  }
+</div>

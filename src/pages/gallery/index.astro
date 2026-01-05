@@ -1,8 +1,9 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout";
-import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
-import TitlePage from "@/components/TitlePage";
+import { CldImage } from "astro-cloudinary";
+import BaseLayout from "@/base/BaseLayout.astro";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/starwind/card";
+import TitlePage from "@/components/ui/TitlePage.astro";
 
 const albums = await getCollection("albums");
 ---
@@ -10,36 +11,41 @@ const albums = await getCollection("albums");
 <BaseLayout title="Gallery">
   <TitlePage
     title="Gallery"
-    iconName="solar:gallery-bold-duotone"
-    iconClass="text-cyan-400 dark:text-orange-400"
+    iconName="gallery-bold-duotone"
+    iconClass="text-anchor"
   />
-  <p class="text-center text-lg">A collection of my photos</p>
-  <section class="container mx-auto grid grid-cols-2 gap-8">
+  <p class="mb-8 text-center text-lg">A collection of my photos</p>
+  <section class="mx-auto grid gap-8 sm:grid-cols-3">
     {
       albums.map((item) => (
         <a href={`/gallery/${item.id}`} class="group mb-4 block transition-all">
-          <Image
-            src={item.data.cover}
-            alt={item.data.title}
-            format="avif"
-            width={720}
-            quality="mid"
-            class:list={[
-              "rounded-lg transition-all",
-              "group-hover:opacity-90 group-hover:shadow-lg",
-            ]}
-          />
-          <div class="mt-4 text-center">
-            <strong class="font-bold" transition:name={`${item.id}-title`}>
-              {item.data.title}
-            </strong>
-            <p
-              class="text-sm text-slate-900 dark:text-slate-100"
-              transition:name={`${item.id}-description`}
-            >
-              {item.data.description}
-            </p>
-          </div>
+          <Card>
+            <CardHeader>
+              <CldImage
+                src={item.data.cover}
+                alt={item.data.title}
+                format="avif"
+                width={400}
+                quality="50"
+                class:list={[
+                  "rounded-lg transition-all",
+                  "group-hover:shadow-lg",
+                ]}
+              />
+            </CardHeader>
+            <CardContent class="mt-4 text-center">
+              <CardTitle
+                transition:name={`${item.id}-title`}
+              >
+                {item.data.title}
+              </CardTitle>
+              <CardDescription
+                transition:name={`${item.id}-description`}
+              >
+                {item.data.description}
+              </CardDescription>
+            </CardContent>
+          </Card>
         </a>
       ))
     }

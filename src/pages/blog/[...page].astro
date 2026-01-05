@@ -1,12 +1,12 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout";
+
 import { getCollection } from "astro:content";
-import ListPostsSimple from "@/components/ListPostsSimple";
-import TitlePage from "@/components/TitlePage";
-import { groupPostsByYear } from "@/utils";
 import { Icon } from "astro-icon/components";
-import ButtonLeft from "@/components/ButtonLeft";
-import ButtonRight from "@/components/ButtonRight";
+import BaseLayout from "@/base/BaseLayout.astro";
+import ListPostsSimple from "@/components/post/ListPostsSimple.astro";
+import { Button } from "@/components/starwind/button";
+import TitlePage from "@/components/ui/TitlePage.astro";
+import { groupPostsByYear } from "@/lib/post";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -16,18 +16,20 @@ export async function getStaticPaths() {
   );
   const postsByYear = groupPostsByYear(sortedPosts);
   // Sort years in descending order
-  const years = Object.keys(postsByYear).sort((a, b) => b - a);
+  const years = Object.keys(postsByYear).sort(
+    (a, b) => parseInt(b, 10) - parseInt(a, 10),
+  );
   //Get the current year
   const currentYear = new Date().getFullYear();
   //Define the years in order for the nav buttons
   return years.map((year, index) => ({
     params: { page: index === 0 ? undefined : year },
     props: {
-      year: parseInt(year),
-      posts: postsByYear[year],
+      year: parseInt(year, 10),
+      posts: postsByYear[parseInt(year, 10)],
       prevYear: years[index + 1],
       nextYear: years[index - 1],
-      isCurrentYear: parseInt(year) === currentYear,
+      isCurrentYear: parseInt(year, 10) === currentYear,
     },
   }));
 }
@@ -38,31 +40,32 @@ const { year, posts, prevYear, nextYear } = Astro.props;
 <BaseLayout title={`${year} Blog Posts`}>
   <TitlePage
     title={`${year} Blog Posts`}
-    iconName="solar:notebook-bookmark-bold-duotone"
-    iconClass="text-cyan-400 dark:text-orange-400"
+    iconName="notebook-bookmark-bold-duotone"
+    iconClass="text-anchor"
   />
   <ListPostsSimple posts={posts} />
   <nav class="flex justify-evenly">
     {
       nextYear && (
-        <ButtonLeft
-          buttonLink={
-            parseInt(nextYear) === new Date().getFullYear()
+        <Button
+          href={
+            parseInt(nextYear, 10) === new Date().getFullYear()
               ? "/blog"
               : `/blog/${nextYear}`
           }
-          buttonText={`${nextYear} Posts`}
-          ariaLabel="Next Year"
-        />
+          aria-label="Next Year"
+        >
+          <Icon name="arrow-right-bold-duotone" class="size-6" />
+          <span>{`${nextYear} Posts`}</span>
+        </Button>
       )
     }
     {
       prevYear && (
-        <ButtonRight
-          buttonLink={`/blog/${prevYear}`}
-          buttonText={`${prevYear} Posts`}
-          ariaLabel="Previous Year"
-        />
+        <Button href={`/blog/${prevYear}`} aria-label="Previous Year">
+          <Icon name="arrow-left-bold-duotone" class="size-6" />
+          <span>{`${prevYear} Posts`}</span>
+        </Button>
       )
     }
   </nav>

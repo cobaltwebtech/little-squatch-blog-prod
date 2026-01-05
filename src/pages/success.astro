@@ -1,20 +1,22 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout";
-import TitlePage from "@/components/TitlePage";
+
 import { Icon } from "astro-icon/components";
+import BaseLayout from "@/base/BaseLayout.astro";
+import { Button } from "@/components/starwind/button";
+import TitlePage from "@/components/ui/TitlePage.astro";
 ---
 
 <BaseLayout title="Message Received">
   <TitlePage
     title="Message Received"
-    iconName="solar:chat-round-check-bold-duotone"
-    iconClass="text-green-500"
+    iconName="chat-round-check-bold-duotone"
+    iconClass="text-success"
   />
   <div class="mx-auto w-1/2 text-center">
     <h2 class="my-6 text-2xl font-bold">
       Thanks for contacting the Little Squatch
     </h2>
-    <p class="mb-6">
+    <p class="mb-6 text-balance">
       Bet you didn't know a Sasquatch can read? Well, this one does and I
       promise to read your message and get back to you if you asked me.
     </p>
@@ -22,5 +24,9 @@ import { Icon } from "astro-icon/components";
       <Icon name="sasquatch" class="size-16" />
     </div>
     <p class="mb-6 font-bold">Little Squatch</p>
+    <Button variant="secondary" href="/" class="w-fit">
+      <Icon name="home-bold-duotone" class="size-6" />
+      <span>Back to Home</span>
+    </Button>
   </div>
 </BaseLayout>

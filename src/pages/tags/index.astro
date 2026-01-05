@@ -1,28 +1,33 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout";
-import TitlePage from "@/components/TitlePage";
-import { getTags } from "@/utils";
-import { sluglify } from "@/utils";
+
+import BaseLayout from "@/base/BaseLayout.astro";
+import { Button } from "@/components/starwind/button";
+import TitlePage from "@/components/ui/TitlePage.astro";
+import { getTags } from "@/lib/post";
+import { sluglify } from "@/lib/sluglify";
 
 const tags = await getTags();
 ---
 
 <BaseLayout title="Tags">
-  <TitlePage
-    title="Tags"
-    iconName="solar:tag-bold-duotone"
-    iconClass="text-cyan-400 dark:text-orange-400"
-  />
-  <div class="flex flex-wrap justify-center gap-4 sm:gap-6">
+  <TitlePage title="Tags" iconName="tag-bold-duotone" iconClass="text-anchor" />
+  <p class="mb-8 text-center">
+    Select a tag below to view posts related to that tag.
+  </p>
+
+  <section
+    class="mx-auto flex max-w-3xl flex-wrap justify-center gap-4 sm:gap-6"
+  >
     {
       tags.map((tag) => (
-        <a
+        <Button
           href={sluglify(`/tags/${tag}`)}
-          class="inline-block rounded-full bg-slate-200 px-4 py-2 text-sm font-semibold dark:bg-slate-700"
+          variant="tertiary"
+          class="rounded-full px-4 py-2 text-sm font-semibold"
         >
           #{tag}
-        </a>
+        </Button>
       ))
     }
-  </div>
+  </section>
 </BaseLayout>

@@ -1,41 +1,46 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout";
-import TitlePage from "@/components/TitlePage";
-import Sasquatch from "../components/icons/Sasquatch.astro";
-import { Image } from "astro:assets";
 
-import littleSquatchPic from "../assets/images/Little-Squatch-About.avif";
+import { CldImage } from "astro-cloudinary";
+import { Icon } from "astro-icon/components";
+import BaseLayout from "@/base/BaseLayout.astro";
+import TitlePage from "@/components/ui/TitlePage.astro";
+
+const littleSquatchPic = "littlesquatchblog/assets/Little-Squatch-About.avif";
 ---
 
 <BaseLayout title="About Me">
   <TitlePage
     title="About Me"
-    iconName="solar:info-square-bold-duotone"
-    iconClass="text-cyan-400 dark:text-orange-400"
+    iconName="info-square-bold-duotone"
+    iconClass="text-anchor"
   />
-  <div class="grid grid-cols-1 gap-10 lg:grid-cols-2">
-    <div class="font-normal">
-      <p class="mb-6">Howdy there!</p>
-      <p class="mb-6">
-        <Sasquatch />
+  <section class="grid gap-10 lg:grid-cols-2">
+    <div class="space-y-6">
+      <p>Howdy there!</p>
+      <p>
+        <Icon name="sasquatch" class="size-16" />
       </p>
-      <p class="mb-6">
+      <p>
         Who is the Little Squatch? Well my human name is Christopher Garza and
         I'm glad you stopped by to take a look at my blog.
       </p>
-      <p class="mb-6">
+      <p>
         This blog is just my personal corner of the web to express my creative
         side. I am originally from Dublin, Texas, a small quiet town in
         north-central Texas. I now live in Austin, Texas where I run my own
         company.
       </p>
-      <p class="mb-6">
+      <p>
         My full time job is being my own boss for my company based in Austin
-        called <a href="#" target="_blank">Cobalt Web Technologies</a>. Working
-        in tech field, specifically building modern web apps I built this blog
-        to show off some of my photos and tell some stories to the world.
+        called <a
+          href="https://www.cobaltweb.tech/?utm_source=little-squatch-blog&utm_medium=web&utm_campaign=blog-referral&utm_content=link"
+          rel="noopener"
+          target="_blank">Cobalt Web Technologies</a
+        >. Working in tech field, specifically building modern web apps I built
+        this blog to show off some of my photos and tell some stories to the
+        world.
       </p>
-      <p class="mb-6">
+      <p>
         Obvisouly, one of my hobbies is photography and travel. I definitely
         enjoy the technical aspects of photography. While I suppose I am bit
         "left-brained" and not super artistic I do try to express my creative
@@ -43,26 +48,25 @@ import littleSquatchPic from "../assets/images/Little-Squatch-About.avif";
         make it into a career, I just enjoy taking photos and traveling. I hope
         you enjoy taking a look at my blog and inspire you too.
       </p>
-      <p class="mb-6">
+      <p>
         Thanks for stopping by and if you have any questions feel free to <a
           href="/contact">shoot me a message</a
         >.
       </p>
-      <p class="mb-6">
+      <p>
         P.S. If you ever see a squatch running around in the wild don't feed or
         pet it! Stay back at least 100 feet from any wild animals please.
       </p>
     </div>
     <div>
-      <Image
+      <CldImage
         src={littleSquatchPic}
         width={900}
         height={1200}
         format="avif"
-        loading="lazy"
-        class="w-full rounded-md object-cover"
+        class="mx-auto w-3/4 rounded-lg"
         alt="Little Squatch aka Christopher Garza bio photo"
       />
     </div>
-  </div>
+  </section>
 </BaseLayout>

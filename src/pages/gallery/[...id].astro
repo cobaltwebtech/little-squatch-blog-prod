@@ -1,9 +1,17 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout";
-import { Image } from "astro:assets";
+
 import { getCollection } from "astro:content";
-import { getAlbumImages } from "src/utils/albums.ts";
-import Button from "@/components/Button";
+import { CldImage } from "astro-cloudinary";
+import { getCldImageUrl } from "astro-cloudinary/helpers";
+import BaseLayout from "@/base/BaseLayout.astro";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbSeparator,
+} from "@/components/starwind/breadcrumb";
+import TitlePage from "@/components/ui/TitlePage.astro";
 
 import "photoswipe/style.css";
 
@@ -25,53 +33,87 @@ export async function getStaticPaths() {
 }
 
 const { album } = Astro.props;
-const images = await getAlbumImages(album.id);
+
+// Get all album images from the collection
+const allImages = await getCollection("albumImages");
+
+// Filter images that belong to this album's folder
+const images = allImages
+  .filter((img) => img.id.startsWith(album.data.folder))
+  .map((img) => ({
+    src: img.id,
+    width: img.data.width,
+    height: img.data.height,
+  }));
 ---
 
 <BaseLayout title={album.data.title}>
   <section class="text-center">
-    <h2 class="text-5xl font-bold" transition:name={`${album.id}-title`}>
+    <h1
+      class="text-2xl font-bold tracking-wide sm:text-3xl md:text-4xl"
+      transition:name={`${album.id}-title`}
+    >
       {album.data.title}
-    </h2>
+    </h1>
     <p class="my-4 text-xl" transition:name={`${album.id}-description`}>
       {album.data.description}
     </p>
-    <Button
-      buttonLink="/gallery"
-      buttonText="Back to Gallery"
-      iconName="solar:arrow-left-bold-duotone"
-    />
-    <div
-      class="container mx-auto my-8 text-center sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5"
-      data-pswp-gallery
-    >
-      {
-        images.map((image) => (
+    <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/gallery">Back to Gallery</BreadcrumbLink>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+  </section>
+  <section
+    class="mx-auto my-8 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
+    data-pswp-gallery
+  >
+    {
+      images.map((image: { src: string; width: number; height: number }) => {
+        const fullSizeUrl = getCldImageUrl({
+          src: image.src,
+          width: 2400,
+          format: "auto",
+          quality: "auto",
+        });
+        
+        return (
           <a
-            href={image.src}
+            href={fullSizeUrl}
             data-pswp-width={image.width}
             data-pswp-height={image.height}
             class="contents"
             target="_blank"
           >
-            <Image
-              src={image}
+            <CldImage
+              src={image.src}
               alt={`Image from ${album.data.title} album`}
               format="avif"
-              quality={50}
-              class="mb-4 rounded border border-transparent transition-all duration-300 ease-in-out hover:border-gray-300 hover:shadow-lg"
+              class="hover:border-border rounded border border-transparent transition-all duration-300 ease-in-out hover:shadow-lg"
               loading="lazy"
             />
           </a>
-        ))
-      }
-    </div>
-    <Button
-      buttonLink="/gallery"
-      buttonText="Back to Gallery"
-      iconName="solar:arrow-left-bold-duotone"
-    />
+        );
+      })
+    }
   </section>
+  <Breadcrumb>
+    <BreadcrumbList>
+      <BreadcrumbItem>
+        <BreadcrumbLink href="/">Home</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbLink href="/gallery">Back to Gallery</BreadcrumbLink>
+      </BreadcrumbItem>
+    </BreadcrumbList>
+  </Breadcrumb>
 </BaseLayout>
 <!-- Initialize and render Photo Swipe plugin -->
 <script>

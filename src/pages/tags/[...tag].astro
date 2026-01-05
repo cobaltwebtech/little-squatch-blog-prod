@@ -1,0 +1,49 @@
+---
+
+import BaseLayout from "@/base/BaseLayout.astro";
+import ListPosts from "@/components/post/ListPosts.astro";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbSeparator,
+} from "@/components/starwind/breadcrumb";
+import TitlePage from "@/components/ui/TitlePage.astro";
+import { getPostByTag, getTags } from "@/lib/post";
+import { sluglify } from "@/lib/sluglify";
+
+export async function getStaticPaths() {
+  const tags = (await getTags()) as string[];
+
+  return tags.map((tag) => ({
+    params: {
+      tag: sluglify(tag.toLowerCase()),
+    },
+    props: { tag },
+  }));
+}
+
+const { tag } = Astro.props as { tag: string };
+const posts = await getPostByTag(tag);
+---
+
+<BaseLayout title={tag.charAt(0).toUpperCase() + tag.slice(1)}>
+  <TitlePage
+    title={`#${tag}`}
+    iconName="tag-bold-duotone"
+    iconClass="text-anchor"
+  />
+  <Breadcrumb>
+    <BreadcrumbList>
+      <BreadcrumbItem>
+        <BreadcrumbLink href="/">Home</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbLink href="/tags">Back to Tags</BreadcrumbLink>
+      </BreadcrumbItem>
+    </BreadcrumbList>
+  </Breadcrumb>
+  <ListPosts posts={posts} />
+</BaseLayout>

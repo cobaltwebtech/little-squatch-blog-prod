@@ -1,0 +1,72 @@
+---
+import { CldImage } from "astro-cloudinary";
+import { Icon } from "astro-icon/components";
+import FormattedDate from "@/components/post/FormattedDate.astro";
+import { Button } from "@/components/starwind/button";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/starwind/card";
+
+const {
+  data: { title, description, pubDate, heroImage, category },
+  readTime,
+  id,
+} = Astro.props;
+---
+
+<Card class="flex h-full flex-col">
+  <CardHeader class="group relative overflow-hidden rounded-t-xl p-0">
+    <a href={`/post/${id}/`}>
+      <div
+        class="absolute bottom-0 z-30 h-20 w-full bg-slate-600/40 backdrop-blur-sm backdrop-saturate-200"
+      >
+        <div
+          class="flex items-center justify-between gap-x-1 px-6 py-4 text-slate-50 text-shadow-lg/50"
+        >
+          <div class="flex flex-col justify-center gap-1">
+            <FormattedDate date={pubDate} />
+            <span class="text-sm">{readTime}</span>
+          </div>
+          <div>{category}</div>
+        </div>
+      </div>
+      <CldImage
+        src={heroImage}
+        format="avif"
+        class="h-[300px] w-full object-cover transition-all duration-200 will-change-transform group-hover:scale-[1.05]"
+        alt={`Thumbnail image of ${title}`}
+        transition:name={`${id}-image`}
+      />
+    </a>
+  </CardHeader>
+  <CardContent class="flex-1 space-y-4 px-8 py-6">
+    <a href={`/post/${id}/`}>
+      <h2
+        class="text-2xl font-semibold tracking-wide text-balance"
+        transition:name={`${id}-title`}
+      >
+        {title}
+      </h2>
+    </a>
+    <p class="line-clamp-2 overflow-hidden font-light">
+      {description}
+    </p>
+  </CardContent>
+  <CardFooter>
+    <Button
+      href={`/post/${id}/`}
+      aria-label={`Read Post ${title}`}
+      class="group w-fit"
+      variant="secondary"
+    >
+      <span>Read Post</span>
+      <Icon
+        name="arrow-right-bold-duotone"
+        class="size-6 transition-all duration-300 group-hover:translate-x-1.5"
+      />
+    </Button>
+  </CardFooter>
+</Card>

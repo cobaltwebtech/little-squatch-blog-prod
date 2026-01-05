@@ -1,0 +1,42 @@
+---
+
+import type { CollectionEntry } from "astro:content";
+import { CldImage } from "astro-cloudinary";
+import { Card, CardContent, CardHeader } from "@/components/starwind/card";
+import { cn } from "@/lib/cn";
+
+type Props = {
+  posts: CollectionEntry<"blog">[];
+};
+
+const { posts } = Astro.props;
+---
+
+<div class={cn(`flex flex-col md:flex-row sm:justify-between gap-8`)}>
+  {
+    posts.length > 0 ? (
+      posts.map((post) => {
+        return (
+          <a href={`/post/${post.id}/`} class="">
+            <Card>
+              <CardHeader>
+                <CldImage
+                  src={post.data.heroImage}
+                  width={200}
+                  height={200}
+                  class="size-20 rounded-xl object-cover"
+                  alt={`Thumbnail image of related post ${post.data.title}`}
+                />
+              </CardHeader>
+              <CardContent>
+                <h6 class="text-lg font-semibold">{post.data.title}</h6>
+              </CardContent>
+            </Card>
+          </a>
+        );
+      })
+    ) : (
+      <span>There are no related posts yet.</span>
+    )
+  }
+</div>

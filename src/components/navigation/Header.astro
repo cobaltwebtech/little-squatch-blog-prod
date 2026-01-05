@@ -1,0 +1,246 @@
+---
+import Logo from "@/icons/sasquatch.svg";
+import { Icon } from "astro-icon/components";
+import { Button } from "@/components/starwind/button";
+
+interface NavItem {
+  title: string;
+  url: string;
+  iconName: string;
+}
+
+const currentPath = Astro.url.pathname;
+
+//Array for menu items with Astro Icons
+const navItems: Array<NavItem> = [
+  {
+    title: "Blog",
+    url: "/blog",
+    iconName: "notebook-bookmark-bold-duotone",
+  },
+  { title: "Gallery", url: "/gallery", iconName: "gallery-bold-duotone" },
+  { title: "Tags", url: "/tags", iconName: "tag-bold-duotone" },
+  {
+    title: "About",
+    url: "/about-little-squatch",
+    iconName: "info-square-bold-duotone",
+  },
+  {
+    title: "Contact",
+    url: "/contact",
+    iconName: "chat-line-bold-duotone",
+  },
+];
+---
+
+<!-- Preline scripts are imported in the BaseLayout.astro component --><!-- Main header component -->
+<header
+  class="sticky inset-x-0 top-4 z-50 mx-auto max-w-screen-2xl px-2 text-sm sm:px-6 lg:px-8"
+>
+  <!-- Navigation container -->
+  <nav
+    class="grid grid-cols-6 items-center rounded-3xl border bg-teal-900/85 px-2 py-2 backdrop-blur-md sm:px-4 md:px-4 lg:grid-cols-16 lg:px-6 dark:bg-teal-700/85"
+    aria-label="Navigation"
+  >
+    <!-- Logo -->
+    <div class="col-span-4 lg:col-span-6">
+      <a
+        class="flex items-center gap-2"
+        href="/"
+        aria-label="Little Squatch Blog logo"
+      >
+        <div>
+          <Logo class="size-16 lg:size-20" />
+        </div>
+        <div
+          class="text-lg font-bold text-nowrap text-slate-50 sm:text-xl lg:w-max lg:text-2xl xl:text-3xl"
+        >
+          LittleSquatch.Blog
+        </div>
+      </a>
+    </div>
+    <!-- Container for buttons on Theme Toggle, and Mobile menu -->
+    <div
+      class="col-span-2 col-end-7 ms-auto flex items-center gap-x-2 py-1 lg:order-3 lg:col-span-1 lg:col-end-17"
+    >
+      <!-- Theme Toggle for dark/light mode -->
+      <Button
+        type="button"
+        size="icon"
+        aria-label="Dark Mode Toggle"
+        class="hs-dark-mode hs-dark-mode-active:hidden bg-foreground hover:bg-foreground/90 ring-border flex size-8 items-center justify-center rounded-full transition duration-300 outline-none"
+        data-hs-theme-click-value="dark"
+      >
+        <Icon name="moon-stars-bold-duotone" class="size-6" />
+      </Button>
+      <Button
+        type="button"
+        size="icon"
+        aria-label="Light Mode Toggle"
+        class="hs-dark-mode hs-dark-mode-active:flex bg-anchor hover:bg-anchor/90 ring-border hidden size-8 items-center justify-center rounded-full transition duration-300 outline-none dark:focus:outline-none"
+        data-hs-theme-click-value="light"
+      >
+        <Icon name="sun-2-bold-duotone" class="size-6" />
+      </Button>
+      <!-- Mobile Menu Toggle Button -->
+      <div class="lg:hidden">
+        <Button
+          type="button"
+          size="icon"
+          class="hs-collapse-toggle bg-anchor-foreground hover:bg-anchor-foreground/90 flex size-8 items-center justify-center rounded-full transition duration-300 disabled:pointer-events-none disabled:opacity-50 dark:focus:outline-none"
+          id="hs-navbar-mobile-collapse"
+          aria-expanded="false"
+          aria-controls="hs-navbar-mobile"
+          aria-label="Toggle navigation"
+          data-hs-collapse="#hs-navbar-mobile"
+        >
+          <!-- Menu Icon -->
+          <Icon
+            name="hamburger-menu-line-duotone"
+            class="hs-collapse-open:hidden size-6 shrink-0"
+          />
+          <!-- Close (X) Icon -->
+          <Icon
+            name="close-circle-bold-duotone"
+            class="hs-collapse-open:block hidden size-6 shrink-0"
+          />
+          <span class="sr-only">Toggle navigation</span>
+        </Button>
+      </div>
+    </div>
+    <!-- Menu items with collapsible mobile menu (position changes based on breakpoint grid order) -->
+    <div
+      id="hs-navbar-mobile"
+      class="hs-collapse col-span-full hidden overflow-hidden p-5 transition-all duration-300 lg:order-2 lg:col-span-9 lg:col-end-16 lg:block lg:p-0"
+      aria-labelledby="hs-navbar-mobile-collapse"
+    >
+      <ul
+        class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-end lg:gap-4"
+      >
+        {
+          navItems.map(({ title, url, iconName }) => {
+            const isActive = url === currentPath;
+            return (
+              <li>
+                <a
+                  href={url}
+                  aria-current={isActive ? "page" : undefined}
+                  data-astro-prefetch
+                  class="hover:text-anchor aria-[current=page]:text-anchor flex justify-center gap-2 text-nowrap text-slate-50 transition-colors duration-300 outline-none focus-visible:ring md:text-sm xl:text-lg dark:focus:outline-none"
+                >
+                  <Icon name={iconName} class="size-6" />
+                  <span class="text-base">{title}</span>
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </div>
+  </nav>
+</header>
+<!-- Theme Appearance script to manage light/dark modes -->
+<script is:inline>
+  document.addEventListener("astro:page-load", () => {
+    const HSThemeAppearance = {
+      init() {
+        const defaultTheme = "default";
+        let theme = localStorage.getItem("hs_theme") || defaultTheme;
+
+        if (document.querySelector("html").classList.contains("dark")) return;
+        this.setAppearance(theme);
+      },
+      _resetStylesOnLoad() {
+        const $resetStyles = document.createElement("style");
+        $resetStyles.innerText = `*{transition: unset !important;}`;
+        $resetStyles.setAttribute("data-hs-appearance-onload-styles", "");
+        document.head.appendChild($resetStyles);
+        return $resetStyles;
+      },
+      setAppearance(theme, saveInStore = true, dispatchEvent = true) {
+        const $resetStylesEl = this._resetStylesOnLoad();
+
+        if (saveInStore) {
+          localStorage.setItem("hs_theme", theme);
+        }
+
+        if (theme === "auto") {
+          theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "default";
+        }
+
+        document.querySelector("html").classList.remove("dark");
+        document.querySelector("html").classList.remove("default");
+        document.querySelector("html").classList.remove("auto");
+
+        document
+          .querySelector("html")
+          .classList.add(this.getOriginalAppearance());
+
+        setTimeout(() => {
+          $resetStylesEl.remove();
+        });
+
+        if (dispatchEvent) {
+          window.dispatchEvent(
+            new CustomEvent("on-hs-appearance-change", { detail: theme }),
+          );
+        }
+      },
+      getAppearance() {
+        let theme = this.getOriginalAppearance();
+        if (theme === "auto") {
+          theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "default";
+        }
+        return theme;
+      },
+      getOriginalAppearance() {
+        const defaultTheme = "default";
+        return localStorage.getItem("hs_theme") || defaultTheme;
+      },
+    };
+    HSThemeAppearance.init();
+
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", () => {
+        if (HSThemeAppearance.getOriginalAppearance() === "auto") {
+          HSThemeAppearance.setAppearance("auto", false);
+        }
+      });
+
+    const $clickableThemes = document.querySelectorAll(
+      "[data-hs-theme-click-value]",
+    );
+    const $switchableThemes = document.querySelectorAll(
+      "[data-hs-theme-switch]",
+    );
+
+    $clickableThemes.forEach(($item) => {
+      $item.addEventListener("click", () =>
+        HSThemeAppearance.setAppearance(
+          $item.getAttribute("data-hs-theme-click-value"),
+          true,
+          $item,
+        ),
+      );
+    });
+
+    $switchableThemes.forEach(($item) => {
+      $item.addEventListener("change", (e) => {
+        HSThemeAppearance.setAppearance(e.target.checked ? "dark" : "default");
+      });
+
+      $item.checked = HSThemeAppearance.getAppearance() === "dark";
+    });
+
+    window.addEventListener("on-hs-appearance-change", (e) => {
+      $switchableThemes.forEach(($item) => {
+        $item.checked = e.detail === "dark";
+      });
+    });
+  });
+</script>

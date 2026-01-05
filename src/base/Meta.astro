@@ -1,0 +1,149 @@
+---
+import { getImage } from "astro:assets";
+import { join } from "node:path";
+import { AstroFont } from "astro-font";
+import faviconSvgSrc from "@/assets/favicons/icon.svg";
+import faviconSrc from "@/assets/favicons/icon-maskable.png";
+import { siteConfig } from "@/lib/site-data";
+
+export interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string | undefined;
+  articleDate?: string | undefined;
+}
+
+const {
+  title,
+  description = siteConfig.description,
+  ogImage,
+  articleDate,
+} = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const socialImageURL = ogImage 
+  ? `https://res.cloudinary.com/cobalt/image/upload/b_auto,c_lpad,f_webp,h_630,q_auto,w_1200/${ogImage}`
+  : new URL("/open-graph.png", Astro.url).href;
+
+const appleTouchIcon = await getImage({
+  src: faviconSrc,
+  width: 180,
+  height: 180,
+  format: "png",
+});
+
+const siteTitle = `${title} | ${siteConfig.title}`;
+---
+
+<!-- Global Metadata -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="generator" content={Astro.generator} />
+
+<link rel="canonical" href={canonicalURL} />
+<link rel="preconnect" href="https://res.cloudinary.com/" />
+
+<!-- Primary Meta Tags -->
+<title>{siteTitle}</title>
+
+<!-- SEO -->
+<meta name="title" content={siteTitle} />
+<meta name="description" content={description} />
+<meta name="author" content={siteConfig.author} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={articleDate ? "article" : "website"} />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={socialImageURL} />
+{
+  articleDate && (
+    <>
+      <meta property="article:author" content={siteConfig.author} />
+      <meta property="article:published_time" content={articleDate} />
+    </>
+  )
+}
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={Astro.url} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={socialImageURL} />
+
+<!-- Links to the webmanifest and sitemap -->
+<link rel="manifest" href="/manifest.json" />
+<link rel="sitemap" href="/sitemap-index.xml" />
+
+<!-- Links for favicons -->
+<link href="/favicon.ico" rel="icon" sizes="any" type="image/x-icon" />
+<link href={faviconSvgSrc.src} rel="icon" type="image/svg+xml" sizes="any" />
+<meta name="mobile-web-app-capable" content="yes" />
+<link href={appleTouchIcon.src} rel="apple-touch-icon" />
+<link href={appleTouchIcon.src} rel="shortcut icon" />
+
+<!-- Set theme color -->
+<meta name="theme-color" content="#007595" />
+
+<!-- RSS auto-discovery -->
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title={siteConfig.title}
+  href="/rss.xml"
+/>
+
+<AstroFont
+  config={[
+    {
+      preload: true,
+      display: "swap",
+      name: "Rockwell Nova",
+      fallback: "serif",
+      src: [
+        {
+          weight: "300",
+          style: "normal",
+          path: join(
+            process.cwd(),
+            "public",
+            "fonts",
+            "RockwellNova-Light.woff2",
+          ),
+        },
+        {
+          weight: "400",
+          style: "normal",
+          path: join(
+            process.cwd(),
+            "public",
+            "fonts",
+            "RockwellNova-Regular.woff2",
+          ),
+        },
+        {
+          weight: "700",
+          preload: true,
+          style: "normal",
+          path: join(
+            process.cwd(),
+            "public",
+            "fonts",
+            "RockwellNova-Bold.woff2",
+          ),
+        },
+        {
+          weight: "800",
+          style: "normal",
+          path: join(
+            process.cwd(),
+            "public",
+            "fonts",
+            "RockwellNova-ExtraBold.woff2",
+          ),
+        },
+      ],
+    },
+  ]}
+/>

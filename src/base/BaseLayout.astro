@@ -1,0 +1,79 @@
+---
+import { ClientRouter, fade } from "astro:transitions";
+import Analytics from "@/base/Analytics.astro";
+import Meta from "@/base/Meta.astro";
+import Footer from "@/components/navigation/Footer.astro";
+import Header from "@/components/navigation/Header.astro";
+import BttButton from "@/components/ui/BackToTopButton.astro";
+import Breakpoints from "@/components/ui/Breakpoints.astro";
+import "@/styles/global.css";
+
+const { title, description, image, articleDate } = Astro.props;
+---
+
+<html lang="en" class="scrollbar-hide lenis lenis-smooth">
+  <head>
+    <Meta
+      title={title}
+      description={description}
+      ogImage={image}
+      articleDate={articleDate}
+    />
+    <!--Import Lenis smooth scroll script -->
+    <script>
+      import Lenis from "lenis";
+
+      const lenis = new Lenis();
+      function raf(time: number): void {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+    </script>
+    <!-- Script to handle dark mode. It will check if the theme is stored in localStorage or if dark theme is preferred by system settings -->
+    <script is:inline>
+      function setThemeFromLocalStorage() {
+        if (
+          localStorage.getItem("hs_theme") === "dark" ||
+          (!("hs_theme" in localStorage) &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches)
+        ) {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
+      }
+      setThemeFromLocalStorage();
+      document.addEventListener("astro:after-swap", () => {
+        setThemeFromLocalStorage();
+      });
+    </script>
+    <Analytics />
+    <ClientRouter />
+  </head>
+
+  <body class="bg-background text-default flex min-h-svh flex-col">
+    <Header />
+    <main
+      class="mx-auto flex max-w-screen-2xl flex-auto flex-col justify-center px-6 py-8 md:px-8 md:py-10 lg:px-16 lg:py-12"
+      transition:animate={fade({ duration: "0.5s" })}
+    >
+      <slot />
+    </main>
+    <Footer />
+    <Breakpoints />
+    <BttButton />
+    <!-- Import Preline UI with View Transition support -->
+    <script>
+      // Optimize Preline initialization only for elements that need it
+      document.addEventListener("astro:page-load", async () => {
+        //
+        if (document.querySelector("[data-hs-collapse]")) {
+          const preline = await import("preline/dist/preline.js");
+          preline.HSStaticMethods.autoInit();
+        }
+      });
+    </script>
+  </body>
+</html>
+<!-- Built with Astro by Cobalt Web Technologies https://www.cobaltweb.tech/ -->

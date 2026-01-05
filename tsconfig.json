@@ -1,17 +1,25 @@
 {
   "extends": "astro/tsconfigs/strict",
+  "include": [
+    ".astro/types.d.ts",
+    "worker-configuration.d.ts",
+    "**/*.ts",
+    "**/*"
+  ],
+  "exclude": ["dist", "node_modules"],
   "compilerOptions": {
-    "strictNullChecks": true,
     "baseUrl": ".",
-    "verbatimModuleSyntax": true,
     "paths": {
-      "@/components/*": ["src/components/*.astro"],
-      "@/layouts/*": ["src/layouts/*.astro"],
-      "@/utils": ["src/utils/index.ts"],
-      "@/data/*": ["src/data/*"],
-      "@/site-config": ["src/data/site.config.ts"],
-      "@/styles": ["src/styles/"]
-    }
-  },
-  "exclude": ["node_modules", "**/node_modules/*", ".vscode", "dist"]
+      "@/*": ["./src/*"]
+    },
+    "target": "es2023",
+    "allowJs": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "incremental": true,
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true
+  }
 }
